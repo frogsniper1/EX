@@ -9,7 +9,7 @@ import com.rs.rss.RSSFeedParser;
 public final class Settings {
 
 	public static final String SERVER_NAME = "EradicationX";
-	public static final String OWNER = "Fatal Resort, Something";		
+	public static final String OWNER = "Era";		
 	public static final int PORT_ID = 43594;
 	public static final int CLIENT_BUILD = 718;
 	public static final int CUSTOM_CLIENT_BUILD = 466239142;
@@ -25,11 +25,11 @@ public final class Settings {
 	/**
 	 * Link settings
 	 */
-	public static final String WEBSITE_LINK = "http://eradicationx.com";
+	public static final String WEBSITE_LINK = "http://eradication-reborn.com";
 	public static final String ITEMLIST_LINK = "http://itemdb.biz";
 	public static final String ITEMDB_LINK = "http://itemdb.biz";
-	public static final String VOTE_LINK = "http://eradicationx.com/vote";
-	public static final String OwnerIPs = "85.253.41.184, 192.168.1.1, 69.117.157.98, 127.0.0.1, 24.45.54.191, 82.39.55.82, 84.195.54.109, 5.151.221.71, 5.151.221.74, 109.131.249.29, 82.147.238.143, 82.41.167.67"; // Add comma after every IP
+	public static final String VOTE_LINK = "http://eradication-reborn.com/vote";
+	public static final String OwnerIPs = "127.0.0.1"; // Add comma after every IP
 	public static final String RED = "E6293F";
 	public static final String GREEN = "15CF0E";
 	public static final String validLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-=_+[{]}: ;.,><?!@#$%^&*()~|\\";

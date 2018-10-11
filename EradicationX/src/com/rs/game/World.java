@@ -377,7 +377,7 @@ public final class World {
 		CoresManager.slowExecutor.scheduleWithFixedDelay(new Runnable() {
 			@Override
 			public void run() {
-				Settings.parser = new RSSFeedParser("http://eradicationx.com/forums/index.php?/forum/32-server-updates.xml");
+				Settings.parser = new RSSFeedParser("http://eradication-reborn.com/forums/index.php?/forum/8-updates.xml");
 				Settings.feed = Settings.parser.readFeed();
 				System.out.println("Refreshed parsing unit for forums.");
 			}
