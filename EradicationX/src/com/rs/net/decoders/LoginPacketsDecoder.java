@@ -164,7 +164,7 @@ public final class LoginPacketsDecoder extends Decoder {
 		}
 		if(username.contains ("dragonkk") || username.toLowerCase().contains("apache") 
 				|| username.toLowerCase().contains("fagg") || username.toLowerCase().contains("shivas") 
-				|| username.toLowerCase().contains("")
+				|| username.toLowerCase().contains("grr")
 				|| username.toLowerCase().contains("prick")
 				|| username.toLowerCase().contains("cunt")
 				|| username.toLowerCase().contains("nigger")

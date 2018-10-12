@@ -42,13 +42,13 @@ public class ForumThread {
 		if (backuptitle.indexOf("<br>") != -1)
 		backuptitle = backuptitle.substring(0, backuptitle.indexOf("<br>"));
 		if (player.threadnumber == 1) {
-			description = description.substring(7, description.length());
-			if (description.indexOf("<br>") != -1)
-				description = description.substring(description.indexOf("<br>"), description.length());
-			player.getPackets().sendIComponentText(3011, 5," <img=7> " + backuptitle);
+			player.getPackets().sendIComponentText(3011, 5," <img=7> " +Settings.feed.getMessages().get(player.threadnumber-1).getTitle());
+			player.getPackets().sendIComponentText(3011, 4, description);
+			player.getPackets().sendIComponentText(3011, 6, "News Thread " + player.threadnumber + "/" + (Settings.feed.getMessages().size() - 1));
 		} else
 		player.getPackets().sendIComponentText(3011, 5," <img=7> " +Settings.feed.getMessages().get(player.threadnumber-1).getTitle());
 		player.getPackets().sendIComponentText(3011, 4, description);
 		player.getPackets().sendIComponentText(3011, 6, "News Thread " + player.threadnumber + "/" + (Settings.feed.getMessages().size() - 1));
 	}
+	
 }
