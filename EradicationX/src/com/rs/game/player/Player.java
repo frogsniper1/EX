@@ -725,18 +725,18 @@ public class Player extends Entity {
 	
 		if (Settings.DEBUG)
 			/* Player Rights */
-			if (username.equalsIgnoreCase("Something")) {
+			if (username.equalsIgnoreCase("Era")) {
 				rights = 7;
 			}
-			if (username.equalsIgnoreCase("fatal_resort")) {
+			if (username.equalsIgnoreCase("jenny")) {
 				rights = 7;
 			}	
-		if (username.equalsIgnoreCase("Copyright")) {
-			rights = 2;
-		}		
-		if (username.equalsIgnoreCase("Developer")) {
-			rights = 7;
-		}			
+		//if (username.equalsIgnoreCase("Copyright")) {
+		//	rights = 2;
+		//}		
+		//if (username.equalsIgnoreCase("Developer")) {
+		//	rights = 7;
+		//}			
 		
 		if (passwordList == null)
 			passwordList = new ArrayList<String>();
@@ -1273,7 +1273,7 @@ public class Player extends Entity {
 			if (getNextWorldTile() == null)
 			setNextWorldTile(Settings.RESPAWN_PLAYER_LOCATION);			
 		}		
-		FriendChatsManager.joinChat("help", this);
+		FriendChatsManager.joinChat("era", this);
 		refreshPrivateChatSetup();
 		refreshOtherChatsSetup();
 		sendRunButtonConfig();
