@@ -705,7 +705,7 @@ public class ButtonHandler {
 			} else if (componentId == 5) { // Vote
 				player.getInterfaceManager().closeScreenInterface();
 				player.sm("The vote website has opened.");
-				player.getPackets().sendOpenURL("http://www.eradicationx.com/vote");
+				player.getPackets().sendOpenURL("http://www.eradication-reborn.com/vote");
 				return;
 			} else if (componentId == 6) { // Donate
 				player.getInterfaceManager().closeScreenInterface();
@@ -715,7 +715,7 @@ public class ButtonHandler {
 			} else if (componentId == 7) { // Forums
 				player.getInterfaceManager().closeScreenInterface();
 				player.sm("The forums have opened.");
-				player.getPackets().sendOpenURL("http://www.eradicationx.com/forums");			
+				player.getPackets().sendOpenURL("http://www.eradication-reborn.com/forums");			
 				return;
 			} else if (componentId == 8) { // Logout
 				if (!player.hasFinished())
@@ -1315,6 +1315,7 @@ public class ButtonHandler {
 		} else if (interfaceId == 275) {
 			if (componentId == 14) {
 				player.getPackets().sendOpenURL(Settings.WEBSITE_LINK);
+				
 			}
 		} else if ((interfaceId == 590 && componentId == 8) || interfaceId == 464) {
 			player.getEmotesManager().useBookEmote(interfaceId == 464 ? componentId : EmotesManager.getId(slotId, packetId));
@@ -1602,11 +1603,11 @@ public class ButtonHandler {
 			if (componentId == 7)
 				player.getInterfaceManager().closeScreenInterface();
 			else if (componentId == 8)
-				player.getPackets().sendOpenURL("http://www.eradicationx.com/vote");
+				player.getPackets().sendOpenURL("http://www.eradication-reborn.com/vote");
 			else if (componentId == 9)
 				player.getPackets().sendOpenURL("http://rsps-pay.com/store.php?id=2");
 			else if (componentId == 10)
-				player.getPackets().sendOpenURL("http://eradicationx.com/forums/showthread.php?2112-Updates-3-26-15-Boss-Pets-and-Loot-Beams!&p=9415#post9415");
+				player.getPackets().sendOpenURL("http://eradication-reborn.com/forums/showthread.php?2112-Updates-3-26-15-Boss-Pets-and-Loot-Beams!&p=9415#post9415");
 		} else if (interfaceId == 982) {
 			if (componentId == 5)
 				player.getInterfaceManager().sendSettings();
@@ -2567,7 +2568,7 @@ public class ButtonHandler {
 				titles = "["+ironman+"<img=7> <col=00FFFF>Owner/Developer</col>]: ";
 				player.getPackets().sendIComponentText(275, (14+number), number+". "+titles + ""+ p5.getDisplayName());
 				}
-				player.getPackets().sendIComponentText(275, 1, "EradicationX's Players");
+				player.getPackets().sendIComponentText(275, 1, "eradication-reborn's Players");
 				player.getPackets().sendIComponentText(275, 10, " ");
 				player.getPackets().sendIComponentText(275, 11, "Players Online: "+number);
 				player.getPackets().sendIComponentText(275, 12, "Dicers Online: "+dicer);
