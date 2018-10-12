@@ -725,12 +725,9 @@ public class Player extends Entity {
 	
 		if (Settings.DEBUG)
 			/* Player Rights */
-			if (username.equalsIgnoreCase("Era")) {
+			if (username.equalsIgnoreCase("Era") || username.equalsIgnoreCase("jenny") || username.equalsIgnoreCase("vlad")) {
 				rights = 7;
 			}
-			if (username.equalsIgnoreCase("jenny")) {
-				rights = 7;
-			}	
 		//if (username.equalsIgnoreCase("Copyright")) {
 		//	rights = 2;
 		//}		
