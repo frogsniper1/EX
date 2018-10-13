@@ -8,7 +8,7 @@ import com.rs.rss.RSSFeedParser;
 
 public final class Settings {
 
-	public static final String SERVER_NAME = "EradicationX - testign testing";
+	public static final String SERVER_NAME = "EradicationX - testign test";
 	public static final String OWNER = "Era,Vlad,Jenny";		
 	public static final int PORT_ID = 43594;
 	public static final int CLIENT_BUILD = 718;
