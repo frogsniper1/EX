@@ -2073,6 +2073,7 @@ public final class ObjectHandler {
     private static void handleOptionExamine(final Player player, final WorldObject object) {
     	final ObjectDefinitions def = object.getDefinitions();
         if (player.getRights() >= 2) {
+        	player.examinedObj = object;
             player.sm("" + object.getDefinitions().name + ": " + object.getId() + " (Coords: <col=00FFFF>" + object.getX() + ", " + object.getY() + "</col>)");
         }else
         player.getPackets().sendGameMessage("It's an " + object.getDefinitions().name + ".");

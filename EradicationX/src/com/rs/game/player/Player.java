@@ -6274,6 +6274,8 @@ public class Player extends Entity {
 	private boolean learnedPermTurmBoost;
 
 	public boolean completed = true;
+
+	public WorldObject examinedObj;
 	
 	public boolean isTriviamaster() {
 		return triviamaster;
@@ -6464,5 +6466,7 @@ public class Player extends Entity {
 	public void setEnchantHelm(boolean enchantHelm) {
 		this.enchantHelm = enchantHelm;
 	} 
+	
+	
 
 }

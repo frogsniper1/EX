@@ -456,15 +456,28 @@ public class Executive {
             if (cmd[0].equals("addobj")) {
                 int object = Integer.parseInt(cmd[1]);
                 int rotation = Integer.parseInt(cmd[2]);
-                int type = cmd.length > 2 ? Integer.parseInt(cmd[3]) : 10;
+                int type = cmd.length > 3 ? Integer.parseInt(cmd[3]) : 10;
                 if (type > 22 || type < 0) {
                     type = 10;
                 }
                 World.spawnObject(
-                        new WorldObject(Integer.valueOf(cmd[1]), type, 0,
+                        new WorldObject(object, type, rotation,
                         player.getX(), player.getY(), player
                         .getPlane()), true);
                 ObjectSpawns.addObjectSpawn(object, type, rotation, player.getRegionId(), player, true);
+                return true;
+            }
+            
+            if (cmd[0].equals("removeobj")) {
+                WorldObject obj = player.examinedObj;
+                    if (obj != null) {
+                        World.removeObject(obj, true);
+                        player.getPackets().sendGameMessage("Removed object "+obj.getDefinitions().name+" : "+ obj.getId() + ".");
+                        player.examinedObj = null;
+                        return true;
+                        } else {
+                            player.getPackets().sendGameMessage("Invalid object.");
+                    }
                 return true;
             }
 
