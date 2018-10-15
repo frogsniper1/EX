@@ -126,6 +126,12 @@ public class Executive {
             }
             if (cmd[0].equals("addspawn")) {
                 int npcID = Integer.parseInt(cmd[1]);
+                try {
+					NPCSpawns.addSpawn(player.getUsername(), npcID, player);
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 NPCSpawns.addNPCSpawn(npcID, player.getRegionId(), new WorldTile(player.getX(), player.getY(), 0), -1, false);
                 World.spawnNPC(npcID, player, -1, true, true);
                 return true;
