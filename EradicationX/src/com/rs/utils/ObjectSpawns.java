@@ -89,7 +89,7 @@ public final class ObjectSpawns {
 		}
 	}
 
-	private static final void addObjectSpawn(int objectId, int type,
+	public static final void addObjectSpawn(int objectId, int type,
 			int rotation, int regionId, WorldTile tile, boolean cliped) {
 		try {
 			DataOutputStream out = new DataOutputStream(new FileOutputStream("data/map/packedSpawns/" + regionId + ".os", true));

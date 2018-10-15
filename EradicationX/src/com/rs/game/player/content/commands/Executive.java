@@ -27,6 +27,7 @@ import com.rs.utils.DisplayNames;
 import com.rs.utils.Encrypt;
 import com.rs.utils.IPBanL;
 import com.rs.utils.NPCSpawns;
+import com.rs.utils.ObjectSpawns;
 import com.rs.utils.PkRank;
 import com.rs.utils.SerializableFilesManager;
 import com.rs.utils.Utils;
@@ -126,12 +127,6 @@ public class Executive {
             }
             if (cmd[0].equals("addspawn")) {
                 int npcID = Integer.parseInt(cmd[1]);
-                try {
-					NPCSpawns.addSpawn(player.getUsername(), npcID, player);
-				} catch (Throwable e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
                 NPCSpawns.addNPCSpawn(npcID, player.getRegionId(), new WorldTile(player.getX(), player.getY(), 0), -1, false);
                 World.spawnNPC(npcID, player, -1, true, true);
                 return true;
@@ -453,8 +448,25 @@ public class Executive {
                             player.getX(), player.getY(), player
                             .getPlane()), true);
                 } catch (NumberFormatException e) {
-                    player.getPackets().sendPanelBoxMessage("Use: setkills id");
+                    player.getPackets().sendPanelBoxMessage("Use: ;;object id type(optional)");
                 }
+                return true;
+            }
+            
+            if (cmd[0].equals("addobj")) {
+                int object = Integer.parseInt(cmd[1]);
+                int type = cmd.length > 2 ? Integer.parseInt(cmd[2]) : 10;
+                if (type > 22 || type < 0) {
+                    type = 10;
+                }
+                int rotation = Integer.parseInt(cmd[3]);
+                World.spawnObject(
+                        new WorldObject(Integer.valueOf(cmd[1]), type, 0,
+                        player.getX(), player.getY(), player
+                        .getPlane()), true);
+                ObjectSpawns.addObjectSpawn(object, type, rotation, player.getRegionId(), player, true);
+                //NPCSpawns.addNPCSpawn(npcID, player.getRegionId(), new WorldTile(player.getX(), player.getY(), 0), -1, false);
+                //World.spawnNPC(npcID, player, -1, true, true);
                 return true;
             }
 
