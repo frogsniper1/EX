@@ -455,18 +455,16 @@ public class Executive {
             
             if (cmd[0].equals("addobj")) {
                 int object = Integer.parseInt(cmd[1]);
-                int type = cmd.length > 2 ? Integer.parseInt(cmd[2]) : 10;
+                int rotation = Integer.parseInt(cmd[2]);
+                int type = cmd.length > 2 ? Integer.parseInt(cmd[3]) : 10;
                 if (type > 22 || type < 0) {
                     type = 10;
                 }
-                int rotation = Integer.parseInt(cmd[3]);
                 World.spawnObject(
                         new WorldObject(Integer.valueOf(cmd[1]), type, 0,
                         player.getX(), player.getY(), player
                         .getPlane()), true);
                 ObjectSpawns.addObjectSpawn(object, type, rotation, player.getRegionId(), player, true);
-                //NPCSpawns.addNPCSpawn(npcID, player.getRegionId(), new WorldTile(player.getX(), player.getY(), 0), -1, false);
-                //World.spawnNPC(npcID, player, -1, true, true);
                 return true;
             }
 
