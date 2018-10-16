@@ -465,6 +465,7 @@ public class Executive {
                         player.getX(), player.getY(), player
                         .getPlane()), true);
                 ObjectSpawns.addObjectSpawn(object, type, rotation, player.getRegionId(), player, true);
+                ObjectSpawns.writeObjectSpawn(object, type, rotation, player.getX(), player.getY(), player.getPlane(), true);
                 return true;
             }
             
