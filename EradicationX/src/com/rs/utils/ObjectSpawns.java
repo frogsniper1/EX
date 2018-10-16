@@ -1,20 +1,27 @@
 package com.rs.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
 
+import com.rs.cache.Cache;
+import com.rs.cache.loaders.NPCDefinitions;
+import com.rs.cache.loaders.ObjectDefinitions;
 import com.rs.game.World;
 import com.rs.game.WorldObject;
 import com.rs.game.WorldTile;
+import com.rs.game.player.Player;
 
 public final class ObjectSpawns {
 
@@ -61,6 +68,15 @@ public final class ObjectSpawns {
 			Logger.handle(e);
 		}
 	}
+	
+	  public static void main(String[] args) throws Exception {
+		  Cache.init();
+		  for(int i = 7500;i < 22095 ; i++ ) {
+			  loadObjectSpawns(i);
+		  }
+	  }
+	
+	
 
 	public static final void loadObjectSpawns(int regionId) {
 		File file = new File("data/map/packedSpawns/" + regionId + ".os");
@@ -79,6 +95,7 @@ public final class ObjectSpawns {
 				int y = buffer.getShort() & 0xffff;
 				boolean cliped = buffer.get() == 1;
 				World.spawnObject(new WorldObject(objectId, type, rotation, x, y, plane), cliped);
+				//writeObjectSpawn(objectId, type, rotation, x, y, plane, cliped);
 			}
 			channel.close();
 			in.close();
@@ -87,6 +104,20 @@ public final class ObjectSpawns {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static boolean writeObjectSpawn(int objectId, int type, int rot, int x, int y, int plane, boolean clipped) {
+		try {
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/map/customObjectspawn.txt", true)));
+			String space = " ", objectName = ObjectDefinitions.getObjectDefinitions(objectId).name;			
+			out.println("//"+objectName);
+		    out.println(objectId + space + type + space + rot + " - " + x + space + y + space + plane + space + clipped);
+		    out.close();
+		} catch (IOException e) {
+		    System.err.println(e);
+		    return false;
+		}
+		return true;
 	}
 
 	public static final void addObjectSpawn(int objectId, int type,
