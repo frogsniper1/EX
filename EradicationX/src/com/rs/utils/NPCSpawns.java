@@ -129,7 +129,7 @@ public final class NPCSpawns {
 	
 	public static boolean writeNpcSpawn(int npcId, WorldTile tile, int mapAreaNameHash, boolean canBeAttackFromOutOfArea) {
 		try {
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/npcs/npcSpawnDump.txt", true)));
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/npcs/unpackedSpawnsList.txt", true)));
 			String space = " ", npcName = NPCDefinitions.getNPCDefinitions(npcId).getName();		
 			out.println("//"+npcName);
 		    out.println(npcId + " - " + tile.getX() + space + tile.getY() + space + tile.getPlane() +(mapAreaNameHash > 0 ? +mapAreaNameHash+space+canBeAttackFromOutOfArea : ""));
@@ -169,7 +169,7 @@ public final class NPCSpawns {
 					canBeAttackFromOutOfArea = buffer.get() == 1;
 				}
 				World.spawnNPC(npcId, new WorldTile(x, y, plane), mapAreaNameHash, canBeAttackFromOutOfArea, false);
-				writeNpcSpawn(npcId, new WorldTile(x, y, plane), mapAreaNameHash, canBeAttackFromOutOfArea);
+				//writeNpcSpawn(npcId, new WorldTile(x, y, plane), mapAreaNameHash, canBeAttackFromOutOfArea);
 			}
 			channel.close();
 			in.close();
