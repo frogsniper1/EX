@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rs.cache.loaders.NPCDefinitions;
+import com.rs.cache.loaders.ObjectDefinitions;
 import com.rs.game.World;
 import com.rs.game.WorldTile;
 import com.rs.game.npc.NPC;
@@ -121,6 +124,20 @@ public final class NPCSpawns {
 		} catch (Throwable e) {
 			Logger.handle(e);
 		}
+	}
+	
+	public static boolean writeNpcSpawn(int npcId, int regionId, WorldTile tile, int mapAreaNameHash, boolean canBeAttackFromOutOfArea) {
+		try {
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/npcs/test.txt", true)));
+			String space = " ", npcName = NPCDefinitions.getNPCDefinitions(npcId).getName();		
+			out.println("//"+npcName);
+		    out.println(npcId + " - " + tile.getX() + space + tile.getY() + space + tile.getPlane() +(mapAreaNameHash > 0 ? +mapAreaNameHash+space+canBeAttackFromOutOfArea : ""));
+		    out.close();
+		} catch (IOException e) {
+		    System.err.println(e);
+		    return false;
+		}
+		return true;
 	}
 
 	public static final void loadNPCSpawns(int regionId) {
