@@ -1167,7 +1167,7 @@ public class RegularPlayer {
 					player.getPackets().sendGameMessage("You can't teleport while you're in this area.");
 					return true;
 				}			
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4823, 1));
+				Magic.sendNormalTeleportSpell(player, 0, 0, Settings.PLAYER_HOME_LOCATION);
             return true;
             }
 			
