@@ -1,5 +1,6 @@
 package com.rs.game.player.dialogues;
 
+import com.rs.Settings;
 import com.rs.game.Graphics;
 import com.rs.game.World;
 import com.rs.game.WorldTile;
@@ -84,7 +85,7 @@ public class Noticeboard extends Dialogue {
 				} else 
 					end();
 			} else if (componentId == OPTION_3) {
-				player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/1528-which-loot-beam-looks-the-best/");
+				player.getPackets().sendOpenURL(Settings.FORUMS_LINK);
 				end();
 			}
 		} else if (stage == 7) {

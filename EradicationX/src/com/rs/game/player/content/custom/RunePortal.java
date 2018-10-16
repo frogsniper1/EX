@@ -2,6 +2,7 @@ package com.rs.game.player.content.custom;
 
 import com.rs.game.player.KillCount;
 import com.rs.game.player.Player;
+import com.rs.Settings;
 import com.rs.game.WorldTile;
 import com.rs.game.player.content.Magic;
 
@@ -28,11 +29,11 @@ public class RunePortal {
             return;
         }
         else if (componentId == 8) {
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4823, 1));
+				Magic.sendNormalTeleportSpell(player, 0, 0, Settings.PLAYER_HOME_LOCATION);
             return;
         }
         else if (componentId == 10) {
- 				player.getPackets().sendOpenURL("http://www.eradicationx.com/forums");
+ 				player.getPackets().sendOpenURL("http://eradication-reborn.com/forums/");
             return;
         }
         else if (componentId == 12) {

@@ -189,7 +189,7 @@ public class Starter extends Dialogue {
 				player.getAppearence().generateAppearenceData();				
 				player.getInventory().refresh();
 				player.unlock();
-				player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/35-server-rules/#entry87");				
+				//player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/35-server-rules/#entry87");				
 				player.sm("Your current combat class is: Fighter.");
 				player.sm("Supplies for Magic and Ranged have been added to your bank!");				
 				player.getInterfaceManager().closeChatBoxInterface();			

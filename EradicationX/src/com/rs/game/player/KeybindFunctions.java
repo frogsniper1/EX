@@ -3,6 +3,7 @@ package com.rs.game.player;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.rs.Settings;
 import com.rs.game.WorldTile;
 import com.rs.game.player.content.Magic;
 import com.rs.utils.Utils;
@@ -131,11 +132,11 @@ public class KeybindFunctions implements Serializable {
 			player.getPackets().sendGameMessage("<img=5> Shops. <img=5>");
 			return;
 		case 7: // vote
-			player.getPackets().sendOpenURL("http://www.eradicationx.com/vote");
+			player.getPackets().sendOpenURL(Settings.VOTE_LINK);
 			player.getPackets().sendGameMessage("<col=0fffff> Please do ::claim to receive your reward once voting on all of the pages.");
 			return;
 		case 8: // forums
-			player.getPackets().sendOpenURL("http://www.eradicationx.com/forums");
+			player.getPackets().sendOpenURL(Settings.FORUMS_LINK);
 			return;
 		case 9: // bank hopefully this works
 			if (player.isExtremeDonator() || player.isLentEradicator() 
@@ -181,7 +182,7 @@ public class KeybindFunctions implements Serializable {
 			Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2991, 9679, 0));
         return;
 		case 13: // price guide
-			player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/41-eradicationx-price-guide/#post14520");
+			player.getPackets().sendOpenURL(Settings.FORUMS_LINK);
 			return;
 		case 14: // withdraw from money pouch
 			if (player.getTrade().isTrading()) {

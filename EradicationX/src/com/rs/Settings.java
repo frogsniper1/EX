@@ -26,9 +26,12 @@ public final class Settings {
 	 * Link settings
 	 */
 	public static final String WEBSITE_LINK = "http://eradication-reborn.com";
+	public static final String FORUMS_LINK = "http://eradication-reborn.com";
+	public static final String VOTE_LINK = "http://eradication-reborn.com/vote";
+	public static final String STORE_LINK = "http://eradication-reborn.com/store";
+	public static final String HIGHSCORES_LINK = "http://eradication-reborn.com/highscores";
 	public static final String ITEMLIST_LINK = "http://itemdb.biz";
 	public static final String ITEMDB_LINK = "http://itemdb.biz";
-	public static final String VOTE_LINK = "http://eradication-reborn.com/vote";
 	public static final String OwnerIPs = "127.0.0.1"; // Add comma after every IP
 	public static final String RED = "E6293F";
 	public static final String GREEN = "15CF0E";
@@ -77,8 +80,9 @@ public final class Settings {
 	 */
 	public static final int START_PLAYER_HITPOINTS = 100;
 	public static final WorldTile START_PLAYER_LOCATION = new WorldTile(3108, 3160, 3);
+	public static final WorldTile PLAYER_HOME_LOCATION = new WorldTile(3369, 5220, 0);
 	public static final String START_CONTROLER = "null";
-	public static final WorldTile RESPAWN_PLAYER_LOCATION = new WorldTile(3968, 4823, 1);
+	public static final WorldTile RESPAWN_PLAYER_LOCATION = new WorldTile(3358, 5221, 0);//new WorldTile(3968, 4823, 1);
 	public static final long MAX_PACKETS_DECODER_PING_DELAY = 30000; // 30seconds
 	public static final int COMBAT_XP_RATE = 115;
 	public static final int SKILLING_XP_RATE = 115;

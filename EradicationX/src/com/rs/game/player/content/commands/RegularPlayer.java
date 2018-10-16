@@ -87,12 +87,12 @@ public class RegularPlayer {
 				player.sm("Your login message is now " + (player.isHasLoginToggled() ? "disabled." : "enabled."));
 				return true;
 			}
-			if (cmd[0].equalsIgnoreCase("ts") ||
+			/*if (cmd[0].equalsIgnoreCase("ts") ||
 					cmd[0].equalsIgnoreCase("teamspeak") ||
 					cmd[0].equalsIgnoreCase("eradts")) {
 				player.sm("The official teamspeak server is: eradicationx.teamspeak.host");
 				return true;
-			}
+			}*/
 			if (cmd[0].equalsIgnoreCase("worldmap")) {
 				if (player.getInterfaceManager().containsScreenInter()
 						|| player.getInterfaceManager()
@@ -407,7 +407,7 @@ public class RegularPlayer {
 				return true;
 			}
 			if (cmd[0].equals("rules")) {
-				player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/67-eradicationx-rules/#comment-164");
+				player.getPackets().sendOpenURL("http://eradication-reborn.com/forums/");
 				player.getInterfaceManager().sendInterface(275);
 				for (int i = 0; i < 200; i++) {
 			player.getPackets().sendIComponentText(275, i, "");
@@ -549,7 +549,7 @@ public class RegularPlayer {
 			
 			if (cmd[0].equalsIgnoreCase("vote")) {
 					player.sm("Click the auths button to receive auth ids. Then, type in ;;redeem auth to claim your vote.");
-					player.getPackets().sendOpenURL("http://eradicationx.motivoters.com/motivote/");
+					player.getPackets().sendOpenURL(Settings.VOTE_LINK);
 				return true; 
 			}			
 			if (cmd[0].equalsIgnoreCase("redeem")) {
@@ -592,7 +592,7 @@ public class RegularPlayer {
 				return true;
 			}
 			if (cmd[0].equalsIgnoreCase("highscores")) {
-				player.getPackets().sendOpenURL("http://www.eradicationx.com/highscores");
+				player.getPackets().sendOpenURL(Settings.HIGHSCORES_LINK);
 				return true; 
 			}
 			if (cmd[0].equalsIgnoreCase("updates")) {
@@ -600,22 +600,22 @@ public class RegularPlayer {
 				return true; 
 			}			
 			if (cmd[0].equalsIgnoreCase("priceguide") || cmd[0].equalsIgnoreCase("pc") || cmd[0].equalsIgnoreCase("pricecheck") || cmd[0].equalsIgnoreCase("prices")) {
-				player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/41-eradicationx-price-guide/#post14520");
+				player.getPackets().sendOpenURL(Settings.FORUMS_LINK);
 				return true; 
 			}		
-			if (cmd[0].equalsIgnoreCase("droprates") || cmd[0].equalsIgnoreCase("droprate") || cmd[0].equalsIgnoreCase("dr")) {
+			/*if (cmd[0].equalsIgnoreCase("droprates") || cmd[0].equalsIgnoreCase("droprate") || cmd[0].equalsIgnoreCase("dr")) {
 				player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/3916-boss-drop-guide-with-all-drop-rates/");
 				return true; 
-			}
+			}*/
 			if (cmd[0].equalsIgnoreCase("donatorperks") || cmd[0].equalsIgnoreCase("perks")) {
-				player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/2515-donator-rank-perks/");
-				return true; 
-			}			
-			if (cmd[0].equalsIgnoreCase("launcher")) {
+				player.getPackets().sendOpenURL(Settings.STORE_LINK);
+				return true;
+			}
+			/*if (cmd[0].equalsIgnoreCase("launcher")) {
 				player.getPackets().sendOpenURL("http://www.eradicationx.com/files/EradicationX-Launcher.jar");
 					player.getPackets().sendGameMessage("Please delete the client that doesn't say 2.0.");
 				return true; 
-			}			
+			}		*/	
 
 			if (cmd[0].equals("train2")) {
 				if (!player.canSpawn()) {
@@ -1122,7 +1122,7 @@ public class RegularPlayer {
 			
 			if (cmd[0].equals("donate")) {
 				if (player.setRPayPin()) {
-				player.getPackets().sendOpenURL("http://rsps-pay.com/eradicationx");
+				player.getPackets().sendOpenURL(Settings.STORE_LINK);
 				} else {
 				player.sm("Your attempt to donate failed.");
 				}
@@ -1262,7 +1262,7 @@ public class RegularPlayer {
 			}
 			
 			if (cmd[0].equals("forums")) {
-				player.getPackets().sendOpenURL("http://www.eradicationx.com/forums");
+				player.getPackets().sendOpenURL(Settings.FORUMS_LINK);
 				return true;
 			}
 			if (cmd[0].equals("commands")) {

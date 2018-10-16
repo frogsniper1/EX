@@ -186,7 +186,6 @@ public class StartTutorial extends Controler {
 	@Override
 	public void forceClose() {
 		player.getHintIconsManager().removeUnsavedHintIcon();
-		player.getPackets().sendOpenURL("http://eradicationx.com/forums/index.php?/topic/67-eradicationx-rules/#comment-164");
 		player.getMusicsManager().reset();
 		player.getInventory().addItem(15246, 1);
 		player.getToolbelt().addItem(new Item(1351));
