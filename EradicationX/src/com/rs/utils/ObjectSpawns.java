@@ -108,7 +108,7 @@ public final class ObjectSpawns {
 	
 	public static boolean writeObjectSpawn(int objectId, int type, int rot, int x, int y, int plane, boolean clipped) {
 		try {
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/map/customObjectspawn.txt", true)));
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/map/unpackedSpawnsList.txt", true)));
 			String space = " ", objectName = ObjectDefinitions.getObjectDefinitions(objectId).name;			
 			out.println("//"+objectName);
 		    out.println(objectId + space + type + space + rot + " - " + x + space + y + space + plane + space + clipped);
