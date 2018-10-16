@@ -319,14 +319,6 @@ public class Moderator {
 				player.getPackets().sendGameMessage("Hidden? " + player.getAppearence().isHidden());
 				return true;
 			}
-
-                        if (cmd[0].equals("home")) {
-                                player.setNextWorldTile(new WorldTile(3968, 4823, 1));
-                                player.getPackets().sendGameMessage("<img=2> Welcome to home. <img=2>.");
-                                return true;
-                        
-                        }
-			
 			if (cmd[0].equals("unjail")) {
 				name = "";
 				for (int i = 1; i < cmd.length; i++)

@@ -42,15 +42,7 @@ public class StaffCommands {
 			if (cmd[0].equalsIgnoreCase("dropboxinfo")) {
 				player.getPackets().sendOpenURL("http://pastebin.com/XhhSA96h");
 				return true;
-			}
-			if (cmd[0].equalsIgnoreCase("home")) {
-				if (!player.canSpawn()) {
-					player.getPackets().sendGameMessage("You can't teleport while you're in this area.");
-					return true;
-				}			
-				player.setNextWorldTile(new WorldTile(3968, 4823, 1));
-            return true;
-			}			
+			}		
 			if (cmd[0].equals("requestlogs")) {
 				player.sm("Logs are being requested...");
 				LogMover myRunnable = new LogMover(player);
