@@ -16,6 +16,7 @@ import java.nio.channels.FileChannel.MapMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rs.cache.Cache;
 import com.rs.cache.loaders.NPCDefinitions;
 import com.rs.cache.loaders.ObjectDefinitions;
 import com.rs.game.World;
@@ -126,9 +127,9 @@ public final class NPCSpawns {
 		}
 	}
 	
-	public static boolean writeNpcSpawn(int npcId, int regionId, WorldTile tile, int mapAreaNameHash, boolean canBeAttackFromOutOfArea) {
+	public static boolean writeNpcSpawn(int npcId, WorldTile tile, int mapAreaNameHash, boolean canBeAttackFromOutOfArea) {
 		try {
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/npcs/test.txt", true)));
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("data/npcs/npcSpawnDump.txt", true)));
 			String space = " ", npcName = NPCDefinitions.getNPCDefinitions(npcId).getName();		
 			out.println("//"+npcName);
 		    out.println(npcId + " - " + tile.getX() + space + tile.getY() + space + tile.getPlane() +(mapAreaNameHash > 0 ? +mapAreaNameHash+space+canBeAttackFromOutOfArea : ""));
@@ -139,6 +140,13 @@ public final class NPCSpawns {
 		}
 		return true;
 	}
+	
+	  public static void main(String[] args) throws Exception {
+		  Cache.init();
+		  for(int i = 3855;i < 40350 ; i++ ) {
+			  loadNPCSpawns(i);
+		  }
+	  }
 
 	public static final void loadNPCSpawns(int regionId) {
 		File file = new File("data/npcs/packedSpawns/" + regionId + ".ns");
@@ -161,6 +169,7 @@ public final class NPCSpawns {
 					canBeAttackFromOutOfArea = buffer.get() == 1;
 				}
 				World.spawnNPC(npcId, new WorldTile(x, y, plane), mapAreaNameHash, canBeAttackFromOutOfArea, false);
+				writeNpcSpawn(npcId, new WorldTile(x, y, plane), mapAreaNameHash, canBeAttackFromOutOfArea);
 			}
 			channel.close();
 			in.close();
