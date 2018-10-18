@@ -1,5 +1,6 @@
 package com.rs.game.player.controlers;
 
+import com.rs.Settings;
 import com.rs.game.Entity;
 import com.rs.game.World;
 import com.rs.game.WorldObject;
@@ -216,6 +217,6 @@ public class StartTutorial extends Controler {
 		});
 		removeControler();	
 		player.starter = 1;
-		Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4823, 1));
+		Magic.sendNormalTeleportSpell(player, 0, 0, Settings.PLAYER_HOME_LOCATION);
 	}
 }
