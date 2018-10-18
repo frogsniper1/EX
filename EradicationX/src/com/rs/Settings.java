@@ -26,7 +26,7 @@ public final class Settings {
 	 * Link settings
 	 */
 	public static final String WEBSITE_LINK = "http://eradication-reborn.com";
-	public static final String FORUMS_LINK = "http://eradication-reborn.com";
+	public static final String FORUMS_LINK = "http://eradication-reborn.com/forums";
 	public static final String VOTE_LINK = "http://eradication-reborn.com/vote";
 	public static final String STORE_LINK = "http://eradication-reborn.com/store";
 	public static final String HIGHSCORES_LINK = "http://eradication-reborn.com/highscores";

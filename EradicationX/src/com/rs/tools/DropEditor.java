@@ -1032,15 +1032,11 @@ public class DropEditor extends javax.swing.JFrame {
 									.setMaxAmount(1);
 
 						} else {
+							String id = (String) dropTable.getValueAt(dropTable.getSelectedRow(), 0);
 							loader.getDropArray()
 									.get(npcId)
 									.get(dropTable.getSelectedRow())
-									.setItemId(
-											Short.parseShort((String) dropTable
-													.getValueAt(
-															dropTable
-																	.getSelectedRow(),
-															0).toString()));
+									.setItemId((short) Integer.parseInt(id.substring(0, id.indexOf(" - ")).toString()));
 							loader.getDropArray()
 									.get(npcId)
 									.get(dropTable.getSelectedRow())
@@ -1091,7 +1087,7 @@ public class DropEditor extends javax.swing.JFrame {
 			}
 			if (!d.isFromRareTable()) {
 				model.addRow(new Object[] {
-						/*(d.getItemId()) +*/ new Item(d.getItemId()).getName(),
+						d.getItemId()+" - " +new Item(d.getItemId()).getName(),
 						Double.toString(d.getRate()),
 						Integer.toString(d.getMinAmount())
 								+ (d.getMinAmount() == d.getMaxAmount()
