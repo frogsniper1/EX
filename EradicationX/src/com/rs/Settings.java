@@ -9,7 +9,7 @@ import com.rs.rss.RSSFeedParser;
 public final class Settings {
 
 	public static final String SERVER_NAME = "Eradication-Reborn";
-	public static final String OWNER = "Era,Jenny,Vlad";		
+	public static final String OWNER = "Era,Vlad";		
 	public static final int PORT_ID = 43594;
 	public static final int CLIENT_BUILD = 718;
 	public static final int CUSTOM_CLIENT_BUILD = 466239142;

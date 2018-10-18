@@ -3752,13 +3752,12 @@ public class Player extends Entity {
 	public String checkamountdonated(Player player, String username){
 		try{
 			username = username.replaceAll(" ","_");
-		    String secret = "c81e728d9d4c2f636f067f89cc14862c";
-			String email = "zar.q@hotmail.com";
-			URL url = new URL("http://rsps-pay.com/includes/listener.php?username="+username+"&secret="+secret+"&email="+email+"&totalamount=true");
+		    String secret = "7dcf7ce97d2451742ff8b6fc72aea8fa"; //YOUR SECRET KEY!
+			URL url = new URL("http://app.gpay.io/api/runescape/"+username+"/"+secret);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 			String results = reader.readLine();
 				if(results.toLowerCase().contains("!error:")){
-					//Logger.log(this, "[RSPS-PAY]"+results);
+					
 				}else{
 					return results;
 				}
@@ -3786,11 +3785,11 @@ public class Player extends Entity {
 			if (getSecurityPin() == getDonationPin()) {
 				return true;
 			}
-			username = username.replaceAll(" ", "_");
-			String secret = "992214F4E2742C3C85DBA8BDBAD683FC";
-	        URL url = new URL("http://rsps-pay.com/eradicationx/index.php?action=updatepin&newpin="+getSecurityPin()+"&username="+username+"&passcode="+secret);
-		    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-		    String results = reader.readLine();
+			username = username.replaceAll(" ","_");
+		    String secret = "7dcf7ce97d2451742ff8b6fc72aea8fa"; //YOUR SECRET KEY!
+			URL url = new URL("http://app.gpay.io/api/runescape/"+username+"/"+secret);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+			String results = reader.readLine();
 		    setDonationPin(getSecurityPin());
             if (results.toLowerCase().contains("ERROR")) {
                  Logger.log(this, "[RSPS-PAY]"+results);
@@ -3939,9 +3938,9 @@ public class Player extends Entity {
 			
 	public boolean rspsdata(Player player, String username, boolean hidden) {
 	try{
-		String secret = "c81e728d9d4c2f636f067f89cc14862c"; //YOUR SECRET KEY!
-		String email = "zar.q@hotmail.com"; //This is the one you use to login into RSPS-PAY
-		URL url = new URL("http://rsps-pay.com/includes/listener.php?username="+username+"&secret="+secret+"&email="+email);
+		username = username.replaceAll(" ","_");
+	    String secret = "7dcf7ce97d2451742ff8b6fc72aea8fa"; //YOUR SECRET KEY!
+		URL url = new URL("http://app.gpay.io/api/runescape/"+username+"/"+secret);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 		String results = reader.readLine();
 			if(results.toLowerCase().contains("!error:")) {
@@ -3956,120 +3955,120 @@ public class Player extends Entity {
 						switch(ary[i]) {
 							case "0":
 								return false;
-							case "12":
+							case "32133":
 								senddonationitem(player, 6832, 1);
 								++rdon;
 							break;
-							case "13": 
+							case "32134": 
 								senddonationitem(player, 6830, 1);
 								++edon;					
 							break;
-							case "15": 
+							case "32138": 
 								senddonationitem(player, 6199, 1);
 								++mbox;						
 							break;
-							case "17": 
+							case "32139": 
 								senddonationitem(player, 24575, 1);
 								senddonationitem(player, 26027, 1);
 								++qfc;							
 							break;
-							case "35": 
+							case "32140": 
 								senddonationitem(player, 28004, 1);
 								senddonationitem(player, 28020, 1);
 								++bfs;							
 							break;
-							case "43": 
+							case "32141": 
 								senddonationitem(player, 28818, 1);
 								senddonationitem(player, 28820, 1);
 								++drs;					
 							break;
-							case "44": 
+							case "32142": 
 								senddonationitem(player, 28813, 1);
 								senddonationitem(player, 28812, 1);
 								++dls;				
 							break;
-							case "45": 
+							case "32143": 
 								senddonationitem(player, 28821, 1);
 								senddonationitem(player, 28822, 1);
 								++dms;								
 							break;
-							case "62": 
+							case "32144": 
 								senddonationitem(player, 20135, 1);
 								senddonationitem(player, 20139, 1);
 								senddonationitem(player, 20144, 1);
 								++ts;							
 							break;
-							case "65": 
+							case "32145": 
 								senddonationitem(player, 20147, 1);
 								senddonationitem(player, 20151, 1);
 								senddonationitem(player, 20155, 1);
 								++ps;						
 							break;
-							case "67": 
+							case "32146": 
 								senddonationitem(player, 20159, 1);							
 								senddonationitem(player, 20163, 1);
 								senddonationitem(player, 20167, 1);
 								++vs;							
 							break;
-							case "75": 
+							case "32147": 
 								senddonationitem(player, 13740, 1);
 								++dss;							
 							break;
-							case "77": 
+							case "32148": 
 								senddonationitem(player, 13742, 1);
 								++ess;								
 							break;
-							case "80": 
+							case "32149": 
 								senddonationitem(player, 13738, 1);
 								++ass;								
 							break;
-							case "82": 
+							case "32150": 
 								senddonationitem(player, 13744, 1);
 								++sss;;								
 							break;
-							case "4248":
+							case "32135":
 								senddonationitem(player, 6829, 1);
 								++sdr;								
 							break;
-							case "88": 
+							case "32136": 
 								senddonationitem(player, 6828, 1);
 								++er;								
 							break;
-							case "89": 
+							case "32151": 
 								senddonationitem(player, 25202, 10);
 								dtd += 10;								
 							break;
-							case "90": 
+							case "32157": 
 								senddonationitem(player, 23716, 1);
 								++hxl;
 							break;
-							case "92": 
+							case "32152": 
 								senddonationitem(player, 2572, 1);
 								++row;		
 							break;			
-							case "5710":
+							case "32137":
 								player.setDicer(true);
 								player.getAppearence().setTitle(4324324);
 								senddonationitem(player, 15098, 1);
 								++dr;
 							break;
-							case "8196":
+							case "32158":
 								senddonationitem(player, 23716, 10);
 								hxl += 10;
 							break;
-							case "13291":
+							case "32153":
 						  		senddonationitem(player, 27744, 1);
 								tbox += 1;
 							break;
-							case "13293":
+							case "32155":
 								senddonationitem(player, 27745, 1);
 								cbox += 1;
 							break;
-							case "13292":
+							case "32154":
 						  		senddonationitem(player, 27744, 10);
 								tbox += 10;
 							break;
-							case "13294":
+							case "32156":
 								senddonationitem(player, 27745, 10);
 								cbox += 10;
 							break;
