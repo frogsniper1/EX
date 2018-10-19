@@ -401,15 +401,15 @@ public class RegularPlayer {
 				return true;
 			}
 			if (cmd[0].equals("rules")) {
-				player.getPackets().sendOpenURL("http://eradication-reborn.com/forums/");
+				player.getPackets().sendOpenURL("http://eradication-reborn.com/forums/index.php?/topic/16-eradication-reborn-rules/");
 				player.getInterfaceManager().sendInterface(275);
 				for (int i = 0; i < 200; i++) {
 					player.getPackets().sendIComponentText(275, i, "");
 				}
-				player.getPackets().sendIComponentText(275, 1, "EradicationX");
+				player.getPackets().sendIComponentText(275, 1, "Eradication-Reborn");
 				player.getPackets().sendIComponentText(275, 10, "");
 				player.getPackets().sendIComponentText(275, 11, "");
-				player.getPackets().sendIComponentText(275, 12, "<col=ED0C17><u>EradicationX Rules</u>");
+				player.getPackets().sendIComponentText(275, 12, "<col=ED0C17><u>Eradication-Reborn Rules</u>");
 				player.getPackets().sendIComponentText(275, 14, "<col=ED0C17><u>1. No Scamming:");
 				player.getPackets().sendIComponentText(275, 15,
 						"<col=ED0C17>If found scamming, you will be confiscated of the item,");
@@ -575,8 +575,7 @@ public class RegularPlayer {
 			}
 
 			if (cmd[0].equalsIgnoreCase("vote")) {
-				player.sm(
-						"Click the auths button to receive auth ids. Then, type in ;;redeem auth to claim your vote.");
+				player.sm("Click the auths button to receive auth ids. Then, type in ;;reward 1 to claim your vote.");
 				player.getPackets().sendOpenURL(Settings.VOTE_LINK);
 				return true;
 			}
@@ -605,7 +604,9 @@ public class RegularPlayer {
 							}
 							int id = 1;
 							String playerName = player.getUsername();
-							final String request = com.everythingrs.vote.Vote.validate("11944m94w22wo8p9nhkbzhyqfrvlvinjowshh7622mlhh3erk9zqr08edpa4yrvgscfdzk6gvi", playerName, id);
+							final String request = com.everythingrs.vote.Vote.validate(
+									"11944m94w22wo8p9nhkbzhyqfrvlvinjowshh7622mlhh3erk9zqr08edpa4yrvgscfdzk6gvi",
+									playerName, id);
 							String[][] errorMessage = {
 									{ "error_invalid", "There was an error processing your request." },
 									{ "error_non_existent_server", "This server is not registered at EverythingRS." },
@@ -622,20 +623,27 @@ public class RegularPlayer {
 								}
 							}
 							if (request.startsWith("complete")) {
-								int item = Integer.valueOf(request.split("_")[1]);
-								int amount = Integer.valueOf(request.split("_")[2]);
-								String itemName = request.split("_")[3];
-								int remainingPoints = Integer.valueOf(request.split("_")[4]);
-								if (player.getInventory().getFreeSlots() < 2) {
-									player.getBank().addItem(item, amount, true);
-									player.getPackets().sendGameMessage(
-											"<color=ff0000>Inventory full, Reward automatically been added to your bank.</col>");
-									return;
+								WorldVote.setVotes(WorldVote.getVotes() + 1);
+								if (!DoubleVoteManager.isFirstDayofMonth()) {
+									player.getCurrencyPouch()
+											.setVoteTickets(player.getCurrencyPouch().getVoteTickets() + 2);
+									player.voteDisplayAmount++;
+									player.sendVoteNotification();
+								} else {
+									player.getCurrencyPouch()
+											.setVoteTickets(player.getCurrencyPouch().getVoteTickets() + 4);
+									player.voteDisplayAmount += 2;
+									player.sendVoteNotification();
 								}
-								player.getInventory().addItem(item, amount);
-								player.getSqueal().giveEarnedSpins(1);
-								player.sendMessage("You have recieved the item " + itemName + ". You have "
-										+ remainingPoints + " voting reward left.");
+								if (WorldVote.getVotes() >= 200) {
+									World.sendWorldMessage(
+											"<img=5><col=ff0000>[Global Vote]: Hourly 1.5x XP is now active. This XP stacks with every other bonus you have!",
+											false);
+									WorldVote.startReward();
+								}
+								player.setSpellPower(player.getSpellPower() + 2);
+								player.setVote(player.getVote() + 2);
+								VotingBoard.checkRank(player);
 
 							}
 						} catch (Exception e) {

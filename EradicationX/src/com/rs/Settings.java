@@ -9,7 +9,7 @@ import com.rs.rss.RSSFeedParser;
 public final class Settings {
 
 	public static final String SERVER_NAME = "Eradication-Reborn";
-	public static final String OWNER = "Era,Vlad";		
+	public static final String OWNER = "Era,Vlad,Jenny";		
 	public static final int PORT_ID = 43594;
 	public static final int CLIENT_BUILD = 718;
 	public static final int CUSTOM_CLIENT_BUILD = 466239142;
@@ -29,6 +29,7 @@ public final class Settings {
 	public static final String FORUMS_LINK = "http://eradication-reborn.com/forums";
 	public static final String VOTE_LINK = "http://eradication-reborn.com/vote";
 	public static final String STORE_LINK = "http://eradication-reborn.com/store";
+	public static final String Check_perks = "http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/&tab=comments#comment-16";
 	public static final String HIGHSCORES_LINK = "http://eradication-reborn.com/highscores";
 	public static final String ITEMLIST_LINK = "http://itemdb.biz";
 	public static final String ITEMDB_LINK = "http://itemdb.biz";
