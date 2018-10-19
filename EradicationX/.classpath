@@ -8,7 +8,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.16.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/mvgate3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/everythingrs-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/kenneth/Desktop/Zaria 718-830/lib/everythingrs-api.jar"/>
+	<classpathentry kind="lib" path="lib/everythingrs-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -605,7 +605,7 @@ public class RegularPlayer {
 							}
 							int id = 1;
 							String playerName = player.getUsername();
-							final String request = com.everythingrs.vote.Vote.validate("4m94w22woxsmd8p9nhkbzhyqfrvlvinjows116322mlhh3erk9zqr08edpa4yrvgscfdzk6gvi", playerName, id);
+							final String request = com.everythingrs.vote.Vote.validate("11944m94w22wo8p9nhkbzhyqfrvlvinjowshh7622mlhh3erk9zqr08edpa4yrvgscfdzk6gvi", playerName, id);
 							String[][] errorMessage = {
 									{ "error_invalid", "There was an error processing your request." },
 									{ "error_non_existent_server", "This server is not registered at EverythingRS." },
