@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
@@ -1044,6 +1046,14 @@ public final class Utils {
 
 		is.close();
 		return bytes;
+	}
+	
+	public static double round(double value, int places) {
+	    if (places < 0) 
+	    	throw new IllegalArgumentException();
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 
 }

@@ -19,6 +19,13 @@ public class Drop {
 		this.maxAmount = maxAmount;
 		this.rare = rare;
 	}
+	
+	public Drop(int itemId, double rate, int minAmount, int maxAmount) {
+		this.itemId = itemId;
+		this.rate = rate;
+		this.minAmount = minAmount;
+		this.maxAmount = maxAmount;
+	}
 
 	public int getMinAmount() {
 		return minAmount;

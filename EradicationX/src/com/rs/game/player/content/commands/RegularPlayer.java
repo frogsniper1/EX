@@ -25,6 +25,7 @@ import com.rs.game.player.content.custom.DoubleVoteManager;
 import com.rs.game.player.content.custom.TriviaBot;
 import com.rs.game.player.content.custom.YellHandler;
 import com.rs.rss.ForumThread;
+import com.rs.utils.DropUtils;
 import com.rs.utils.Encrypt;
 import com.rs.utils.Utils;
 import com.rs.utils.VotingBoard;
@@ -70,6 +71,28 @@ public class RegularPlayer {
 					return true;
 				}
 
+			}
+			
+			switch(cmd[0]) {
+			case "npcdrops":
+				StringBuilder npcNameSB = new StringBuilder(cmd[1]);
+				if (cmd.length > 1) {
+					for (int i = 2; i < cmd.length; i++) {
+						npcNameSB.append(" ").append(cmd[i]);
+					}
+				}
+				DropUtils.sendNPCDrops(player, npcNameSB.toString());
+				return true;
+
+			case "itemdrops":
+				StringBuilder itemName = new StringBuilder(cmd[1]);
+				if (cmd.length > 1) {
+					for (int i = 2; i < cmd.length; i++) {
+						itemName.append(" ").append(cmd[i]);
+					}
+				}
+				DropUtils.sendItemDrops(player, itemName.toString());
+				return true;
 			}
 			if (cmd[0].equalsIgnoreCase("checkjoined")) {
 				player.sm(player.joined.size() + "");

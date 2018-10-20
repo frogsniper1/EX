@@ -1,13 +1,18 @@
 package com.rs.net.decoders.handlers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
 import com.rs.Settings;
+import com.rs.cache.loaders.ItemDefinitions;
 import com.rs.game.Animation;
 import com.rs.game.ForceTalk;
 import com.rs.game.Graphics;
 import com.rs.game.World;
 import com.rs.game.WorldTile;
+import com.rs.game.npc.Drop;
 import com.rs.game.npc.NPC;
 import com.rs.game.npc.familiar.Familiar;
 import com.rs.game.npc.others.FireSpirit;
@@ -33,6 +38,7 @@ import com.rs.io.InputStream;
 import com.rs.rss.ForumThread;
 import com.rs.utils.DummyRank;
 import com.rs.utils.Logger;
+import com.rs.utils.NPCDrops;
 import com.rs.utils.NPCSpawns;
 import com.rs.utils.RaffleWinner;
 import com.rs.utils.ShopsHandler;
@@ -50,6 +56,7 @@ public class NPCHandler {
 		if (npc == null || npc.hasFinished()
 				|| !player.getMapRegionsIds().contains(npc.getRegionId()))
 			return;
+		sendConsoleDrops(npc,player);
 		if (player.getRights() > 1) {
 			player.getPackets().sendGameMessage(
 					"NPC - [id=" + npc.getId() + ", loc=[" + npc.getX() + ", " + npc.getY() + ", " + npc.getPlane() + "]].");
@@ -70,6 +77,37 @@ public class NPCHandler {
 			Logger.log("NPCHandler", "examined npc: " + npcIndex+", "+npc.getId());
 	}
 	
+	private static void sendConsoleDrops(NPC npc, Player player) {
+		if (npc == null || npc.hasFinished() || !player.getMapRegionsIds().contains(npc.getRegionId()))
+			return;
+		Drop[] drops = NPCDrops.getDrops(npc.getId());
+		if(drops != null) {
+			ArrayList<Drop> droplist = new ArrayList<Drop>();
+		 for (Drop drop : drops) {
+			 if(drops == null)
+				 continue;
+			 droplist.add(drop);
+		 }
+		 if(!droplist.isEmpty()) {
+		 Collections.sort(droplist, new Comparator<Drop>() {
+			    @Override
+			    public int compare(Drop c1, Drop c2) {
+			        return Double.compare(c2.getRate(), c1.getRate());
+			    }
+			});
+		 int count = 0;
+		 for(Drop drop : droplist) {
+			 ItemDefinitions defs = ItemDefinitions.getItemDefinitions(drop.getItemId());
+			 String dropName = defs.getName().toLowerCase();
+			 count++;
+			 player.getPackets().sendPanelBoxMessage("<col=00ff00>"+count+".)</col> ItemName: <col=ff0000>"+dropName+"</col> ItemID: <col=ff0000>"+drop.getItemId()+"</col> DropRate: <col=ff0000>"+drop.getRate()+"%");
+		 }
+		 player.getPackets().sendPanelBoxMessage("Total Drop Amount: <col=ff0000>"+count+"</col> NPCname: <col=ff0000>"+npc.getName()+"</col> NPClevel: <col=ff0000>"+npc.getCombatLevel());
+		 droplist.clear();
+		 }
+		}
+	}
+
 	public static void handleOption1(final Player player, InputStream stream) {
 		int npcIndex = stream.readUnsignedShort128();
 		boolean forceRun = stream.read128Byte() == 1;
