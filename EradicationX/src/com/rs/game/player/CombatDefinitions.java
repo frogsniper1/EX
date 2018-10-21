@@ -476,9 +476,9 @@ public final class CombatDefinitions implements Serializable {
 			if (bonuses == null)
 				continue;
 			for (int id = 0; id < bonuses.length; id++) {
-				if (id == RANGED_STR_BONUS
-						&& this.bonuses[RANGED_STR_BONUS] != 0)
-					continue;
+				//if (id == RANGED_STR_BONUS
+				//		&& this.bonuses[RANGED_STR_BONUS] != 0)
+				//	continue;
 				this.bonuses[id] += bonuses[id];
 			}
 		}
