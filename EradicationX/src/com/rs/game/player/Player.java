@@ -1806,7 +1806,7 @@ public class Player extends Entity {
 	}
 	
 	public void sendVoteNotification() {
-					getDialogueManager().startDialogue("SimpleMessage", "Thank you for voting!");
+					//getDialogueManager().startDialogue("SimpleMessage", "Thank you for voting!");
 					World.sendWorldMessage("<img=5>[Vote Feed]: colorhere" + getDisplayName() + " </col>voted for" + 
 											"colorhere "+ voteDisplayAmount +" Vote Tickets!</col> "
 													+ "World votes are now at colorhere"+ WorldVote.getVotes()+"</col>.", false);	
@@ -3590,6 +3590,7 @@ public class Player extends Entity {
 
 	private Shop shop;
 	public float donatedamount;
+	public int donatedtotal;
 	public Shop getShops() {
 		return shop;
 	}
@@ -3803,22 +3804,24 @@ public class Player extends Entity {
 			}	
 	}
 	
-	public void sendtotaldonationfeed(Player player, boolean hidden) {
+	public void sendtotaldonationfeed(Player player, boolean hidden, int price) {
 		NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
-		float amountdonated = Float.parseFloat(checkamountdonated(this, username));
+		//float amountdonated = Float.parseFloat(checkamountdonated(this, username));
+		int amountdonated = donatedtotal + price;
 		if (!hidden) {
 			for (Player players: World.getPlayers()) {
 				players.sm("<img=5>[Donation] "+players.fontColor()+player.getDisplayName()+" </col> has donated a total of "+players.fontColor()+"" + currencyFormatter.format(amountdonated) + "!");
 			}
 		}
-		player.donatedamount = amountdonated;
+		player.donatedtotal += price;
 	}
 			
-	public void senddonationfeed(Player player, String message) {
+	public void senddonationfeed(Player player, String message, int price) {
 				for (Player players: World.getPlayers()) {
 					players.sm("<img=5>[Donation] "+players.fontColor()+ player.getDisplayName() + " </col>bought "+players.fontColor()+""+message+
 							"</col>");
 				}
+				Logger.printDonateLog(player.getUsername(), message,price);
 			}
 	
 	public boolean check10BRequirements() {
@@ -3947,6 +3950,7 @@ public class Player extends Entity {
 				//Logger.log(this, "[RSPS-PAY]"+results);
 			} else {
 				String boughtitems = "";
+				int price = 0;
 				int rdon = 0, edon = 0, mbox = 0, qfc = 0, bfs = 0, drs = 0, dls = 0, dms = 0, ts = 0, ps = 0, vs = 0, dss = 0, ess = 0, ass = 0,
 						sss = 0, sdr = 0, er = 0, dtd = 0, hxl = 0, row = 0, dr = 0, tbox = 0, cbox = 0;
 				boolean nothin = false;
@@ -3957,6 +3961,7 @@ public class Player extends Entity {
 								return false;
 							case "32133":
 								senddonationitem(player, 6832, 1);
+								price += 10;//sample price
 								++rdon;
 							break;
 							case "32134": 
@@ -4124,9 +4129,9 @@ public class Player extends Entity {
 						String newboughtitems = "";
 						newboughtitems = boughtitems.substring(0,boughtitems.length() - 2) + "!";
 						if (!hidden) {
-						senddonationfeed(player, newboughtitems);
+						senddonationfeed(player, newboughtitems, price);
 						}
-						sendtotaldonationfeed(player, hidden);
+						sendtotaldonationfeed(player, hidden, price);
 						sm("Your purchase has been placed in your bank.");
 						return true;
 					}

@@ -167,6 +167,18 @@ public final class Logger {
 		}
 	}		
 	
+	public static void printDonateLog(String name, String message, int price) {
+		try {
+			BufferedWriter bf = new BufferedWriter(new FileWriter("data/logs/Donate.txt", true));
+			
+			bf.append(name+":   bought " + message+" for "+price+"$");		
+			bf.newLine();
+			bf.flush();
+			bf.close();
+		} catch (IOException ignored) {
+		}
+	}		
+	
 	public static void printDropLog(Player player, Player target, Player loser, Item item) {
 		try {
 			if (player.equals(target) && loser == null)

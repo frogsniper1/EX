@@ -598,11 +598,11 @@ public class RegularPlayer {
 			}
 
 			if (cmd[0].equalsIgnoreCase("vote")) {
-				player.sm("Click the auths button to receive auth ids. Then, type in ;;reward 1 to claim your vote.");
+				player.sm("Click the auths button to receive auth ids. Then, type in ;;redeem to claim your vote.");
 				player.getPackets().sendOpenURL(Settings.VOTE_LINK);
 				return true;
 			}
-			if (cmd[0].equalsIgnoreCase("redeem")) {
+			/*if (cmd[0].equalsIgnoreCase("redeem")) {
 				String auth = cmd[1];
 				if (player.completed == false)
 					player.completed = true;
@@ -615,8 +615,8 @@ public class RegularPlayer {
 				Thread t = new Thread(myRunnable);
 				t.start();
 				return true;
-			}
-			if (cmd[0].equalsIgnoreCase("reward")) {
+			}*/
+			if (cmd[0].equalsIgnoreCase("redeem")) {
 
 				new Thread() {
 					public void run() {
@@ -625,11 +625,10 @@ public class RegularPlayer {
 								player.sendMessage("This id has no reward.");
 								return;
 							}
-							int id = 1;
 							String playerName = player.getUsername();
 							final String request = com.everythingrs.vote.Vote.validate(
 									"11944m94w22wo8p9nhkbzhyqfrvlvinjowshh7622mlhh3erk9zqr08edpa4yrvgscfdzk6gvi",
-									playerName, id);
+									playerName, 1);
 							String[][] errorMessage = {
 									{ "error_invalid", "There was an error processing your request." },
 									{ "error_non_existent_server", "This server is not registered at EverythingRS." },
