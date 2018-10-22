@@ -33,7 +33,7 @@ public class EXInvasion {
 				spawnZombie(xcol, i);
 		}
 		World.spawnNPC(9622, new WorldTile(3968, 4817, 0), - 1, true, true); 
-		World.sendWorldMessage("<img=5><col=ff0000>[Raid]: Zombies have attacked! Go home and run downstairs to defend us!", false);
+		World.sendWorldMessage("<img=5><col=ff0000>[Raid]: Zombies have attacked! Talk to Doomsayer to teleport and defend us!", false);
 		World.sendWorldMessage("<img=5><col=ff0000>[Raid]: Invasion boss Dragith Nurn has spawned.", false);
 	}
 	

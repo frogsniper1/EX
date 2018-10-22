@@ -230,7 +230,7 @@ public class Panel extends JFrame {
 		btnForceChat.setBounds(231, 270, 114, 23);
 		contentPane.add(btnForceChat);
 		
-		JButton btnSmite = new JButton("Fatals yell");
+		JButton btnSmite = new JButton("YELL");
 		btnSmite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				smite();
@@ -239,14 +239,14 @@ public class Panel extends JFrame {
 		btnSmite.setBounds(231, 304, 114, 23);
 		contentPane.add(btnSmite);
 		
-		JButton btnFuckUp = new JButton("Somethings yell");
-		btnFuckUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fuckUp();
-			}
-		});
-		btnFuckUp.setBounds(231, 338, 114, 23);
-		contentPane.add(btnFuckUp);
+		//JButton btnFuckUp = new JButton("Somethings yell");
+		//btnFuckUp.addActionListener(new ActionListener() {
+		//	public void actionPerformed(ActionEvent e) {
+		//		fuckUp();
+		//	}
+		//});
+		//btnFuckUp.setBounds(231, 338, 114, 23);
+		//contentPane.add(btnFuckUp);
 		
 		JButton btnNewButton = new JButton("Shutdown Server");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -321,7 +321,7 @@ public class Panel extends JFrame {
 	public void smite() {
 	String shtyell = JOptionPane.showInputDialog("What do you want to write?");
 	for (Player players: World.getPlayers()) {
-	players.getPackets().sendGameMessage("<img=5> "+players.fontColor()+"[Fatal Resort (VPS)]: " + shtyell + "- VPS");
+	players.getPackets().sendGameMessage("<img=5> "+players.fontColor()+"[Server Console/VPS]: " + shtyell);
 	}
 	}
 	

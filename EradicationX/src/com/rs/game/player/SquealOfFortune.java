@@ -56,7 +56,7 @@ public class SquealOfFortune implements Serializable {
     		if (componentId == 18) {
     			openSpinInterface();
     		} else {
-    			player.getPackets().sendOpenURL("http://rsps-pay.com/store.php?id=2&tab=0");
+    			player.getPackets().sendOpenURL("https://app.gpay.io/store/eradicaton-reborn");
     		}
     	} else if (interfaceId == 1252) { // squeal overlay
     		if (componentId == 5) {
@@ -69,7 +69,7 @@ public class SquealOfFortune implements Serializable {
     		if (componentId == 106 || componentId == 258) { // hide/close button
     			player.getInterfaceManager().setDefaultRootInterface();
     		} else if (componentId == 7 || componentId == 321) { // buy spins on main/reward
-    			player.getPackets().sendOpenURL("http://rsps-pay.com/store.php?id=2&tab=0");
+    			player.getPackets().sendOpenURL("https://app.gpay.io/store/eradicaton-reborn");
     		} else if (componentId == 93 && jackpotSlot != -1 && rewardSlot == -1) { // spin button
     			pickReward();
     		}  else if ((componentId == 192 || componentId == 239) && rewardSlot != -1) { // picking reward

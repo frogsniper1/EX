@@ -170,6 +170,10 @@ public class NPCHandler {
 					npc.setRespawnTask();
 					break;
 				}
+				if(npc.getId() == 3777) {
+					Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4806, 0));
+					return;
+				}
 				if (npc.getId() == 3709)
 					player.getDialogueManager().startDialogue("MrEx", npc.getId());
 				else if (npc.getId() == 949)

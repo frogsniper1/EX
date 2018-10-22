@@ -32,12 +32,16 @@ public final class Launcher {
             System.out.println("USE: guimode(boolean) debug(boolean) hosted(boolean)");
             return;
         }
+        boolean GUI_MODE =  Boolean.parseBoolean(args[0]);
         Settings.DEBUG = Boolean.parseBoolean(args[1]);
         Settings.HOSTED = Boolean.parseBoolean(args[2]);
+       
         long currentTime = Utils.currentTimeMillis();
         if (Settings.HOSTED) { /* NOTHING */ }
         Logger.log("Launcher", "Loading " + Settings.SERVER_NAME + ", please wait...");
         Initializer.loadFiles();
+        if(GUI_MODE)
+        	Panel.main(null);
         try {
             ServerChannelHandler.init();
             NPCSpawning.spawnNpcs();

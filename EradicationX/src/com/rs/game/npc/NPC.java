@@ -430,6 +430,9 @@ public class NPC extends Entity implements Serializable {
 		{
 			setName ("Loyalty Shop");
 		}	
+		if (id == 3777) {
+			setName("End of the World");			
+        }
     }
 
     @Override
