@@ -15,17 +15,23 @@ import com.rs.utils.Utils;
 public class Burying {
 
 	public enum Bone {
-		NORMAL(526, 150),
+		BONES(526, 25),
+		BURNT_BONES(528, 25),
+		WOLF_BONES(2859, 25),
+		MONKEY_BONES(3183, 25),
+		BAT_BONES(530, 25),
+		BIG_BONES(532, 75),
+		JOGRE_BONES(3125, 75),
+		ZOGRE_BONES(4812, 115),
+		BABYDRAGON_BONES(534, 150),
+		WYVERN_BONES(6812, 210),
+		DRAGON_BONES(536, 250),
+		FAYRG_BONES(4830, 300),
+		RAURG_BONES(4832, 320),
+		OURG_BONES(4834, 350),
+		FROST_DRAGON_BONES(18830, 400),
+		DAGANNOTH_BONES(6729, 500);
 
-		BIG(532, 300),
-
-		DRAGON(536, 430),
-
-		OURG(4834, 420),
-		
-		BABY_DRAGON(534, 310),
-
-		FROST_DRAGON(18830, 500);
 
 		private int id;
 		private double experience;
