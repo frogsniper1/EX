@@ -50,6 +50,23 @@ public class Executive {
         } else {
             String name;
             Player target;
+            
+            switch(cmd[0]) {
+            case "setdonated":
+            	  name = "";
+            	  int donated = Integer.parseInt(cmd[1]);
+                  for (int i = 2; i < cmd.length; i++) {
+                      name += cmd[i] + ((i == cmd.length - 1) ? "" : " ");
+                  }
+                  target = World.getPlayerByDisplayName(name);
+                  if (target != null) {
+                     target.donatedtotal = donated;
+                     player.sm(target.getUsername()+" Donation total has been set to "+donated);
+                  }else {
+                	  player.sm("Target doesn't exist");
+                  }
+            	break;
+            }
 
 			if (cmd[0].equals("cannon")) {
 				DwarfMultiCannon.hasItems(player);
