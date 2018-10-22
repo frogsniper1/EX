@@ -3961,121 +3961,146 @@ public class Player extends Entity {
 								return false;
 							case "32133":
 								senddonationitem(player, 6832, 1);
-								price += 10;//sample price
+								price += 10;
 								++rdon;
 							break;
 							case "32134": 
 								senddonationitem(player, 6830, 1);
+								price += 20;
 								++edon;					
 							break;
 							case "32138": 
 								senddonationitem(player, 6199, 1);
-								++mbox;						
+								++mbox;			
+								price += 5;
 							break;
 							case "32139": 
 								senddonationitem(player, 24575, 1);
 								senddonationitem(player, 26027, 1);
-								++qfc;							
+								++qfc;					
+								price += 15;
 							break;
 							case "32140": 
 								senddonationitem(player, 28004, 1);
 								senddonationitem(player, 28020, 1);
-								++bfs;							
+								++bfs;		
+								price += 39;
 							break;
 							case "32141": 
 								senddonationitem(player, 28818, 1);
 								senddonationitem(player, 28820, 1);
 								++drs;					
+								price += 40;
 							break;
 							case "32142": 
 								senddonationitem(player, 28813, 1);
 								senddonationitem(player, 28812, 1);
 								++dls;				
+								price += 40;
 							break;
 							case "32143": 
 								senddonationitem(player, 28821, 1);
 								senddonationitem(player, 28822, 1);
-								++dms;								
+								++dms;					
+								price += 40;
 							break;
 							case "32144": 
 								senddonationitem(player, 20135, 1);
 								senddonationitem(player, 20139, 1);
 								senddonationitem(player, 20144, 1);
-								++ts;							
+								++ts;				
+								price += 35;
 							break;
 							case "32145": 
 								senddonationitem(player, 20147, 1);
 								senddonationitem(player, 20151, 1);
 								senddonationitem(player, 20155, 1);
-								++ps;						
+								++ps;					
+								price += 35;
 							break;
 							case "32146": 
 								senddonationitem(player, 20159, 1);							
 								senddonationitem(player, 20163, 1);
 								senddonationitem(player, 20167, 1);
-								++vs;							
+								++vs;				
+								price += 35;
 							break;
 							case "32147": 
 								senddonationitem(player, 13740, 1);
+								price += 25;
 								++dss;							
 							break;
 							case "32148": 
 								senddonationitem(player, 13742, 1);
-								++ess;								
+								++ess;							
+								price += 25;
 							break;
 							case "32149": 
 								senddonationitem(player, 13738, 1);
+								price += 20;
 								++ass;								
 							break;
 							case "32150": 
 								senddonationitem(player, 13744, 1);
-								++sss;;								
+								++sss;;				
+								price += 20;
 							break;
 							case "32135":
 								senddonationitem(player, 6829, 1);
-								++sdr;								
+								++sdr;						
+								price += 40;
 							break;
 							case "32136": 
 								senddonationitem(player, 6828, 1);
-								++er;								
+								++er;		
+								price += 100;
 							break;
 							case "32151": 
 								senddonationitem(player, 25202, 10);
-								dtd += 10;								
+								dtd += 10;				
+								price += 20;
 							break;
 							case "32157": 
 								senddonationitem(player, 23716, 1);
 								++hxl;
+								price += 3;
 							break;
 							case "32152": 
 								senddonationitem(player, 2572, 1);
 								++row;		
+								price += 10;
 							break;			
 							case "32137":
 								player.setDicer(true);
 								player.getAppearence().setTitle(4324324);
 								senddonationitem(player, 15098, 1);
 								++dr;
+								price += 100;
 							break;
 							case "32158":
 								senddonationitem(player, 23716, 10);
 								hxl += 10;
+								price += 25;
 							break;
 							case "32153":
 						  		senddonationitem(player, 27744, 1);
 								tbox += 1;
+								price += 10;
 							break;
 							case "32155":
 								senddonationitem(player, 27745, 1);
 								cbox += 1;
+								price += 10;
 							break;
 							case "32154":
 						  		senddonationitem(player, 27744, 10);
 								tbox += 10;
+								price += 60;
 							break;
 							case "32156":
 								senddonationitem(player, 27745, 10);
 								cbox += 10;
+								price += 60;
 							break;
 						}
 					}
