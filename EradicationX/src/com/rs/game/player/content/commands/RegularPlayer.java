@@ -1221,7 +1221,7 @@ public class RegularPlayer {
 				return true;
 			}
 
-			if (cmd[0].equals("shops")) {
+			/*if (cmd[0].equals("shops")) {
 				if (!player.canSpawn()) {
 					player.getPackets().sendGameMessage("You can't teleport while you're in this area.");
 					return true;
@@ -1229,16 +1229,16 @@ public class RegularPlayer {
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4822, 2));
 				player.getPackets().sendGameMessage("<img=5> Shops. <img=5>");
 				return true;
-			}
+			}*/
 
-			if (cmd[0].equals("donate")) {
+			/*if (cmd[0].equals("donate")) {
 				if (player.setRPayPin()) {
 					player.getPackets().sendOpenURL(Settings.STORE_LINK);
 				} else {
 					player.sm("Your attempt to donate failed.");
 				}
 				return true;
-			}
+			}*/
 
 			if (cmd[0].equalsIgnoreCase("hiddenclaim")) {
 				try {

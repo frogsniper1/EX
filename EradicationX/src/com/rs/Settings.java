@@ -82,6 +82,7 @@ public final class Settings {
 	public static final int START_PLAYER_HITPOINTS = 100;
 	public static final WorldTile START_PLAYER_LOCATION = new WorldTile(3108, 3160, 3);
 	public static final WorldTile PLAYER_HOME_LOCATION = new WorldTile(3369, 5220, 0);
+	public static final WorldTile SHOPS = new WorldTile(3350, 5215, 0);
 	public static final String START_CONTROLER = "null";
 	public static final WorldTile RESPAWN_PLAYER_LOCATION = new WorldTile(3358, 5221, 0);//new WorldTile(3968, 4823, 1);
 	public static final long MAX_PACKETS_DECODER_PING_DELAY = 30000; // 30seconds

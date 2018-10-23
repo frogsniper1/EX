@@ -189,6 +189,13 @@ public final class ObjectHandler {
                 if (object.getId() == 19205) {
                     Hunter.createLoggedObject(player, object, true);
                 }
+                
+                if (object.getId() == 52846) {//DUNG BARRIER
+                	 player.setNextWorldTile(new WorldTile(3460, 3731, 0));//
+                }else {
+                	 player.setNextWorldTile(new WorldTile(3459, 3731, 0));//
+                }
+                
                 HunterNPC hunterNpc = HunterNPC.forObjectId(id);
                 if (id == 47237) {
                     if (player.getSkills().getLevel(Skills.AGILITY) < 40) {
