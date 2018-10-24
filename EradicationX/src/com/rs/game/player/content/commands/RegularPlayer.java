@@ -1142,7 +1142,8 @@ public class RegularPlayer {
 					player.getPackets().sendGameMessage("You can't teleport while you're in this area.");
 					return true;
 				}
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(1825, 5163, 2));
+				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3458, 3731, 0));
+				//Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(1825, 5163, 2));
 				player.getPackets().sendGameMessage("<img=7> Dungeoneering <img=7>.");
 				return true;
 
@@ -1221,15 +1222,16 @@ public class RegularPlayer {
 				return true;
 			}
 
-			/*if (cmd[0].equals("shops")) {
+			if (cmd[0].equals("shops")) {
 				if (!player.canSpawn()) {
 					player.getPackets().sendGameMessage("You can't teleport while you're in this area.");
 					return true;
 				}
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4822, 2));
+				Magic.sendNormalTeleportSpell(player, 0, 0, Settings.SHOPS);
+				//Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4822, 2));
 				player.getPackets().sendGameMessage("<img=5> Shops. <img=5>");
 				return true;
-			}*/
+			}
 
 			/*if (cmd[0].equals("donate")) {
 				if (player.setRPayPin()) {

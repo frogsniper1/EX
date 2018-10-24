@@ -155,6 +155,7 @@ public final class Settings {
     public static final int[] SOF_UNCOMMON_OTHERS = new int[] { 24154, 24154, 24155 };
     public static final int[] SOF_RARE_OTHERS = new int[] { 995, 995, 995, 995, 23665, 23666, 23667, 23668, 23669, 23670, 23671, 23672, 23673, 23674, 23675, 23676, 23677, 23678, 23679, 23680, 23681, 23682, 23691, 23692, 23693, 23694, 23695, 23696, 23687, 23688, 23689, 23684, 23686, 23685, 23697, 23690, 23699, 23700, 23683, 23698, 27370, 27371, 27372, 26743 };
     public static final int[] SOF_JACKPOT_OTHERS = new int[] { 995, 995, 995, 995, 18349, 18351, 18353, 18355, 18333, 18335, 21777, 22494, 23659, 27359, 27358, 27356 };
+	public static double WorldDropRate = 0;
     
 	private Settings() {
 

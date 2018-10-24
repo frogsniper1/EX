@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.rs.MemoryManager;
+import com.rs.Settings;
 import com.rs.content.utils.DwarfMultiCannon;
 import com.rs.game.Animation;
 import com.rs.game.ForceTalk;
@@ -65,6 +66,25 @@ public class Executive {
                   }else {
                 	  player.sm("Target doesn't exist");
                   }
+            	break;
+            case "setrate":
+          	  name = "";
+          	  int rate = Integer.parseInt(cmd[1]);
+                for (int i = 2; i < cmd.length; i++) {
+                    name += cmd[i] + ((i == cmd.length - 1) ? "" : " ");
+                }
+                target = World.getPlayerByDisplayName(name);
+                if (target != null) {
+                   target.customDropRate = rate;
+                   player.sm(target.getUsername()+" custom droprate has been set to "+rate);
+                }else {
+              	  player.sm("Target doesn't exist");
+                }
+          	break;
+            case "setworldrate":
+            	  int worldrate = Integer.parseInt(cmd[1]);
+            	  Settings.WorldDropRate = worldrate;
+                  World.sendWorldMessage("<col=ff6600>Worldwide drop rate has been set to <col=ff0000>"+worldrate, false);             
             	break;
             }
 

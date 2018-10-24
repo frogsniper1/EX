@@ -6305,6 +6305,8 @@ public class Player extends Entity {
 	public boolean completed = true;
 
 	public WorldObject examinedObj;
+
+	public int customDropRate;
 	
 	public boolean isTriviamaster() {
 		return triviamaster;

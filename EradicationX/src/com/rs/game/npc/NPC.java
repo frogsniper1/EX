@@ -1333,7 +1333,7 @@ public class NPC extends Entity implements Serializable {
                     if (drop.getRate() == 100) {
                         sendDrop(killer, drop);
                     } else {
-                        if ((Utils.getRandomDouble(99) + 1) <= drop.getRate() * getDropRate(killer, drop)) {
+                        if ((Utils.getRandomDouble(99) + 1) <= (drop.getRate() + killer.customDropRate + Settings.WorldDropRate) * getDropRate(killer, drop)) {
                             possibleDrops[possibleDropsCount++] = drop;
                         }
                     }            		
