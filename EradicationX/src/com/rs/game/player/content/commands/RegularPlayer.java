@@ -74,6 +74,9 @@ public class RegularPlayer {
 			}
 			
 			switch(cmd[0]) {
+			case "download":
+				player.getPackets().sendOpenURL("http://eradication-reborn.com/Eradication-X-Reborn.jar");
+				break;
 			case "npcdrops":
 				StringBuilder npcNameSB = new StringBuilder(cmd[1]);
 				if (cmd.length > 1) {

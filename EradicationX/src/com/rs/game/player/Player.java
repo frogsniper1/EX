@@ -1269,7 +1269,16 @@ public class Player extends Entity {
 			getControlerManager().forceStop();
 			if (getNextWorldTile() == null)
 			setNextWorldTile(Settings.RESPAWN_PLAYER_LOCATION);			
-		}		
+		}
+		try {
+			boolean newVps = InetAddress.getLocalHost().getHostAddress().equalsIgnoreCase("5.189.178.208");
+			if(!newVps) {
+				getDialogueManager().startDialogue("SimpleMessage", "You are using an old Client please download the latest client by typing ;;download, Thank You!");
+			}
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
 		FriendChatsManager.joinChat("era", this);
 		refreshPrivateChatSetup();
 		refreshOtherChatsSetup();

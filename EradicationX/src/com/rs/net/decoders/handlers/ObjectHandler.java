@@ -190,7 +190,7 @@ public final class ObjectHandler {
                     Hunter.createLoggedObject(player, object, true);
                 }
                 
-                if (object.getId() == 52846) {//DUNG BARRIER
+                if (object.getId() == 52846 && player.getX() != 3460) {//DUNG BARRIER
                 	 player.setNextWorldTile(new WorldTile(3460, 3731, 0));//
                 }else if (object.getId() == 52846 && player.getX() == 3460){
                 	 player.setNextWorldTile(new WorldTile(3459, 3731, 0));//
