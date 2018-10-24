@@ -20,7 +20,7 @@ public class CurrencyPouch implements Serializable {
 	}
 
 	public int[] getCurrencies() {
-		World.sendWorldMessage(""+currencies.length, false);
+		//World.sendWorldMessage(""+currencies.length, false);
 		int[] tempCurrencies;
 		tempCurrencies = new int[5];
 		if (currencies.length == 4) {
