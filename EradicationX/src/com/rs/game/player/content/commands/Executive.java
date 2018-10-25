@@ -66,7 +66,7 @@ public class Executive {
                  }else {
                	  player.sm("Target doesn't exist");
                  }
-            	break;
+            	return true;
             case "setdonated":
             	  name = "";
             	  int donated = Integer.parseInt(cmd[1]);
@@ -80,7 +80,7 @@ public class Executive {
                   }else {
                 	  player.sm("Target doesn't exist");
                   }
-            	break;
+                  return true;
             case "setrate":
           	  name = "";
           	  int rate = Integer.parseInt(cmd[1]);
@@ -94,12 +94,12 @@ public class Executive {
                 }else {
               	  player.sm("Target doesn't exist");
                 }
-          	break;
+                return true;
             case "setworldrate":
             	  int worldrate = Integer.parseInt(cmd[1]);
             	  Settings.WorldDropRate = worldrate;
                   World.sendWorldMessage("<col=ff6600>Worldwide drop rate has been set to <col=ff0000>"+worldrate, false);             
-            	break;
+                  return true;
             }
 
 			if (cmd[0].equals("cannon")) {
