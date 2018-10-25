@@ -53,6 +53,20 @@ public class Executive {
             Player target;
             
             switch(cmd[0]) {
+            case "setbossratio":
+            	 name = "";
+           	  int ratio = Integer.parseInt(cmd[1]);
+                 for (int i = 2; i < cmd.length; i++) {
+                     name += cmd[i] + ((i == cmd.length - 1) ? "" : " ");
+                 }
+                 target = World.getPlayerByDisplayName(name);
+                 if (target != null) {
+                	 target.donatedtotal = ratio;
+                    player.sm(target.getUsername()+" Donation total has been set to "+ratio);
+                 }else {
+               	  player.sm("Target doesn't exist");
+                 }
+            	break;
             case "setdonated":
             	  name = "";
             	  int donated = Integer.parseInt(cmd[1]);
