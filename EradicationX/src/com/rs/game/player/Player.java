@@ -6320,7 +6320,7 @@ public class Player extends Entity {
 
 	public WorldObject examinedObj;
 
-	public int customDropRate;
+	public int customDropRate = 0;
 	
 	public boolean isTriviamaster() {
 		return triviamaster;
