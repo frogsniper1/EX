@@ -3,6 +3,7 @@ package com.rs.game.player.controlers;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.rs.Settings;
 import com.rs.cores.CoresManager;
 import com.rs.game.Animation;
 import com.rs.game.ForceTalk;
@@ -25,7 +26,7 @@ import com.rs.utils.Utils;
 
 public class NomadsRequiem extends Controler {
 
-	public static final WorldTile OUTSIDE = new WorldTile(3968, 4823, 1);
+	public static final WorldTile OUTSIDE = Settings.PLAYER_HOME_LOCATION;
 
 	private DungeonPart currentPart;
 	private int[] mapBaseChunks;

@@ -1,6 +1,9 @@
 package com.rs.game.player.dialogues;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.rs.game.player.dialogues.instances.*;
 import com.rs.utils.Logger;
@@ -9,9 +12,37 @@ public final class DialogueHandler {
 
 	private static final HashMap<Object, Class<Dialogue>> handledDialogues = new HashMap<Object, Class<Dialogue>>();
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
+	private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
+		List<Class> classes = new ArrayList<Class>();
+		if (!directory.exists()) {
+			return classes;
+		}
+		File[] files = directory.listFiles();
+		for (File file : files) {
+			if (file.isDirectory()) {
+				assert !file.getName().contains(".");
+				classes.addAll(findClasses(file, packageName + "." + file.getName()));
+			} else if (file.getName().endsWith(".class")) {
+				classes.add(
+						Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
+			}
+		}
+		return classes;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static final void init() {
 		try {
+			String fileLoc = "bin/com/rs/game/player/dialogues/impl";
+			String packageDir = "com.rs.game.player.dialogues.impl";
+			List<Class> files = findClasses(new File(fileLoc), packageDir);
+			for (Class<Dialogue> c : files) {
+				if (Dialogue.class.isAssignableFrom(c)) {
+					handledDialogues.put("" + c.getSimpleName() + "",
+							(Class<Dialogue>) Class.forName(c.getCanonicalName()));
+				}
+			}
 			Class<Dialogue> value1 = (Class<Dialogue>) Class
 					.forName(LevelUp.class.getCanonicalName());
 			handledDialogues.put("LevelUp", value1);

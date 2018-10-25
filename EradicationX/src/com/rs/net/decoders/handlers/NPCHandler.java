@@ -15,6 +15,7 @@ import com.rs.game.WorldTile;
 import com.rs.game.npc.Drop;
 import com.rs.game.npc.NPC;
 import com.rs.game.npc.familiar.Familiar;
+import com.rs.game.npc.others.AntiBot;
 import com.rs.game.npc.others.FireSpirit;
 import com.rs.game.npc.others.LivingRock;
 import com.rs.game.npc.pet.Pet;
@@ -169,6 +170,11 @@ public class NPCHandler {
 					Hunter.openJar(player, npc.getId());
 					npc.setRespawnTask();
 					break;
+				}
+				if (npc.getId() == 8122 && npc instanceof AntiBot) {
+					AntiBot antibot = (AntiBot) npc;
+					player.getDialogueManager().startDialogue("AntiBotD",npc.getId(), antibot);
+					return;
 				}
 				if(npc.getId() == 3777) {
 					Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4806, 0));

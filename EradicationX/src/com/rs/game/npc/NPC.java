@@ -1315,7 +1315,10 @@ public class NPC extends Entity implements Serializable {
         			else
         				killer.sm("No luck this time, I should try killing more for the bones.");
             }
-        	if (noDrop()) return;				
+        	if (noDrop()) return;	
+        	
+        	handleBossKillRatio(killer,false);
+        	
             Drop[] possibleDrops = new Drop[drops.length];
             int possibleDropsCount = 0;
             for (Drop drop : drops) {        		               
@@ -1328,20 +1331,22 @@ public class NPC extends Entity implements Serializable {
     					if (killer.getInventory().containsItem(18337, 1) && item.getDefinitions().getName().toLowerCase().contains("bones")) {
     						killer.getSkills().addXp(Skills.PRAYER, Burying.Bone.forId(drop.getItemId()).getExperience());
     						continue;
-    					}	
-    					
+    					}
                     if (drop.getRate() == 100) {
                         sendDrop(killer, drop);
                     } else {
-                        if ((Utils.getRandomDouble(99) + 1) <= (drop.getRate() + killer.customDropRate + Settings.WorldDropRate) * getDropRate(killer, drop)) {
+                    	if(killer.getdropRatio().containsKey(getId()) && killer.getdropRatio().get(getId()) <= 0) {
+    						String dropname = ItemDefinitions.getItemDefinitions(drop.getItemId()).getName();
+    						for (String itemName : Settings.RARE_DROPS) 
+    							if(dropname.toLowerCase().contains(itemName.toLowerCase()))
+    								possibleDrops[possibleDropsCount++] = drop;
+                    	}else if ((Utils.getRandomDouble(99) + 1) <= (drop.getRate() + killer.customDropRate + Settings.WorldDropRate) * getDropRate(killer, drop)) {
                             possibleDrops[possibleDropsCount++] = drop;
                         }
                     }            		
             	}
-            if (possibleDropsCount > 0) {
-                sendDrop(killer,
-                        possibleDrops[Utils.getRandom(possibleDropsCount - 1)]);
-            }
+            if (possibleDropsCount > 0)
+                sendDrop(killer, possibleDrops[Utils.getRandom(possibleDropsCount - 1)]);
         } catch (Exception e) {
             e.printStackTrace();
         } catch (Error e) {
@@ -1437,10 +1442,11 @@ public class NPC extends Entity implements Serializable {
 			} else
             World.addGroundItem(item, new WorldTile(getCoordFaceX(size), getCoordFaceY(size), getPlane()), player, null, false, 180, true);
            
-            for (String itemName : Settings.RARE_DROPS) {   	
+            for (String itemName : Settings.RARE_DROPS) {  	
                 if (dropName.contains(itemName.toLowerCase())) {  
                 	sendDropIncreasedChance(player);
                 	sendLootBeam(player);
+                	handleBossKillRatio(player,true);
                     if (player.getMessageIcon() != 0) {
                    	 World.sendWorldMessage("<img=5>[Drop Feed]<col=FF0000> <img=" + player.getMessageIcon() + ">"+ player.getDisplayName() + "</col> just recieved a <col=FF0000>"+ Utils.formatPlayerNameForDisplay(dropName) +"</col> drop!", false);            	 
                     } else {
@@ -1750,21 +1756,51 @@ public class NPC extends Entity implements Serializable {
     			return true;
     	return this instanceof LegendsNPCs;
     }	
-    /**
-     * Gets the locked.
-     *
-     * @return The locked.
-     */
+    
     public boolean isLocked() {
         return locked;
     }
 
-    /**
-     * Sets the locked.
-     *
-     * @param locked The locked to set.
-     */
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
+    
+    private static final int[][] BOSS_IDS = { //
+    		{15003,200}, // Fatal
+    		{15002,200}, // Something
+    		{1900,200}, // copyright
+    		{15009,200}, // seasinger
+    		{15006,200}, // deathlotus
+    		{14260,200}, // maximum gradum low
+    		{11872,200}, // eradicator
+    		{12787,200}, // blink
+    		{15172,200}, // fear
+    		{11751,200}, // necrolord dk
+    		{8133,200}, // corporeal
+    		{3334,200}, // wildywyrm
+    		{8696,200}, // avatar of destruction
+    		{3847,200}, // sea troll queen	
+    		{14301,200}, // glacor
+			};
+	
+	
+	public void handleBossKillRatio(Player p,boolean reset) {
+		for(int i = 0;i<BOSS_IDS.length;i++)
+			if (getId() == BOSS_IDS[i][0]) {			
+				int z = BOSS_IDS[i][1];
+				if(reset) {
+					p.getdropRatio().put(getId(), z);
+					p.sm("Your " + getName() + " rare drop ratio has been reset back to, 1:<col=ff0000>" + z + "</col>.");
+					return;
+				}
+				if (!p.getdropRatio().containsKey(getId()))
+					p.getdropRatio().put(getId(), z);
+				if (p.getdropRatio().containsKey(getId()))
+					z = p.getdropRatio().get(getId()) - 1;
+				if(p.getdropRatio().get(getId()) < 1)
+					z = 0;
+				p.getdropRatio().put(getId(), z);
+				p.sm("Your " + getName() + " rare drop ratio is now at, 1:<col=ff0000>" + z + "</col>.");
+			}
+		}		
 }

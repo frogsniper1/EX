@@ -13,6 +13,7 @@ import com.rs.game.item.Item;
 import com.rs.game.minigames.CastleWars;
 import com.rs.game.minigames.Crucible;
 import com.rs.game.minigames.FightPits;
+import com.rs.game.npc.others.AntiBot;
 import com.rs.game.player.CoordsEvent;
 import com.rs.game.player.OwnedObjectManager;
 import com.rs.game.player.Player;
@@ -1879,6 +1880,12 @@ public final class ObjectHandler {
                     player.lock(4);
                     player.getPackets().sendGameMessage(THIEVING_MESSAGE);
                     player.setNextAnimation(THIEVING_ANIMATION);
+                    if(!player.isHasAntiBot())
+    					if (Utils.random(2) == 0) {
+    						new AntiBot(player, player);
+    				    	player.sendMessage("<col=ff0000>An Anti-Bot appears out of nowhere.");
+    				    	player.setHasAntiBot(true);
+    					}
                 } else if (id == 62677) {
                     player.getDominionTower().openRewards();
                 } else if (id == 62688) {

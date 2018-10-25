@@ -62,11 +62,18 @@ public class GildedAltar {
 		public static boolean stopOfferGod = false;
 
 		public static void offerprayerGod(final Player player, Item item, WorldObject object) {
+			final int x = player.getX();
+			final int y = player.getY();
 			final int itemId = item.getId();
 			final bonestoOffer bone = bonestoOffer.forId(item.getId());
 			WorldTasksManager.schedule(new WorldTask() {
 				public void run() {
 					try {
+						if (x != player.getX() || y != player.getY()) {
+							stop();
+							player.isBurying = false;
+							return;
+						}
 						if (!player.getInventory().containsItem(itemId, 1)) {
 							stop();
 							return;

@@ -76,6 +76,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -662,6 +663,10 @@ public class Player extends Entity {
 		} else if (currencypouch.getCurrencies().length == 4) {
 			currencypouch = new CurrencyPouch();
 		}
+		
+		if(dropRatio == null)
+			dropRatio = new HashMap<>();
+		
 		this.session = session;
 		this.username = username;
 		this.displayMode = displayMode;
@@ -6506,6 +6511,27 @@ public class Player extends Entity {
 	public void setEnchantHelm(boolean enchantHelm) {
 		this.enchantHelm = enchantHelm;
 	} 
+	
+	/**
+	 * @author Craig
+	 * @see Handles boss drop ratio
+	 */
+	public HashMap<Integer, Integer> dropRatio = new HashMap<>();
+
+	public HashMap<Integer, Integer> getdropRatio() {
+		return dropRatio;
+	}
+	
+	
+	private boolean hasAntiBot;
+	
+	public boolean isHasAntiBot() {
+		return hasAntiBot;
+	}
+
+	public void setHasAntiBot(boolean hasAntiBot) {
+		this.hasAntiBot = hasAntiBot;
+	}
 	
 	
 

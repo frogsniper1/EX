@@ -1055,5 +1055,11 @@ public final class Utils {
 	    bd = bd.setScale(places, RoundingMode.HALF_UP);
 	    return bd.doubleValue();
 	}
+	
+	public static boolean colides(int x1, int y1, int size1, int x2, int y2, int size2) {
+		int distanceX = x1 - x2;
+		int distanceY = y1 - y2;
+		return distanceX < size2 && distanceX > -size1 && distanceY < size2 && distanceY > -size1;
+	}
 
 }
