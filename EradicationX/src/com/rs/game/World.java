@@ -82,8 +82,10 @@ import com.rs.game.player.Skills;
 import com.rs.game.player.actions.BoxAction.HunterNPC;
 import com.rs.game.player.content.ItemConstants;
 import com.rs.game.player.content.LivingRockCavern;
+import com.rs.game.player.content.WorldVote;
 import com.rs.game.player.content.clans.ClansManager;
 import com.rs.game.player.content.custom.BossHighlight;
+import com.rs.game.player.content.custom.DoubleVoteManager;
 import com.rs.game.player.content.custom.InvasionManager;
 import com.rs.game.player.content.custom.PriceManager;
 import com.rs.game.player.content.custom.TriviaBot;
@@ -97,6 +99,7 @@ import com.rs.utils.PkRank;
 import com.rs.utils.RaffleManager;
 import com.rs.utils.ShopsHandler;
 import com.rs.utils.Utils;
+import com.rs.utils.VotingBoard;
 
 public final class World {
 
@@ -131,6 +134,49 @@ public final class World {
 		spawnInvasion();
 		drawRaffle();
 		addResetTempBannedIpsTask();
+		AutoClaimVotes();
+	}
+	
+	private static void AutoClaimVotes() {
+		CoresManager.slowExecutor.scheduleWithFixedDelay(new Runnable() {		
+			@Override
+			public void run() {
+				for(Player p : World.getPlayers()) {
+					if(p == null)
+						continue;
+					String playerName = p.getUsername();
+					try {
+						final String request = com.everythingrs.vote.Vote.validate(
+								"11944m94w22wo8p9nhkbzhyqfrvlvinjowshh7622mlhh3erk9zqr08edpa4yrvgscfdzk6gvi",
+								playerName, 1);
+						if (request.startsWith("complete")) {
+							WorldVote.setVotes(WorldVote.getVotes() + 1);
+							if (!DoubleVoteManager.isFirstDayofMonth()) {
+								p.getCurrencyPouch()
+										.setVoteTickets(p.getCurrencyPouch().getVoteTickets() + 2);
+								p.voteDisplayAmount++;
+								p.sendVoteNotification();
+							} else {
+								p.getCurrencyPouch()
+										.setVoteTickets(p.getCurrencyPouch().getVoteTickets() + 4);
+								p.voteDisplayAmount += 2;
+								p.sendVoteNotification();
+							}
+							if (WorldVote.getVotes() >= 200) {
+								World.sendWorldMessage("<img=5><col=ff0000>[Global Vote]: Hourly 1.5x XP is now active. This XP stacks with every other bonus you have!",
+										false);
+								WorldVote.startReward();
+							}
+							p.setSpellPower(p.getSpellPower() + 2);
+							p.setVote(p.getVote() + 2);
+							VotingBoard.checkRank(p);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}, 0, 1, TimeUnit.SECONDS);
 	}
 	
 	private static void addResetTempBannedIpsTask() {

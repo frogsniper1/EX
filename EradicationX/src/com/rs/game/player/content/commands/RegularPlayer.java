@@ -601,7 +601,7 @@ public class RegularPlayer {
 			}
 
 			if (cmd[0].equalsIgnoreCase("vote")) {
-				player.sm("Click the auths button to receive auth ids. Then, type in ;;redeem to claim your vote.");
+				//player.sm("Click the auths button to receive auth ids. Then, type in ;;redeem to claim your vote.");
 				player.getPackets().sendOpenURL(Settings.VOTE_LINK);
 				return true;
 			}
@@ -619,7 +619,7 @@ public class RegularPlayer {
 				t.start();
 				return true;
 			}*/
-			if (cmd[0].equalsIgnoreCase("redeem")) {
+			/*if (cmd[0].equalsIgnoreCase("redeem")) {
 
 				new Thread() {
 					public void run() {
@@ -679,7 +679,7 @@ public class RegularPlayer {
 					}
 				}.start();
 				return true;
-			}
+			}*/
 			if (cmd[0].equals("checkmbox")) {
 				int[] trimmedItems = { 1037, 14595, 14603, 1050, 23679, 23680, 23681, 11700, 23683, 23684, 23685, 23686,
 						23687, 23688, 23689, 11730, 23691, 23692, 23693, 23694, 23695, 23696, 23697, 23698, 23699,
