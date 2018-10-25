@@ -457,6 +457,7 @@ public final class Woodcutting extends Action {
 		player.getPackets().sendGameMessage("You get some " + logName + ".", true);
 			// todo infernal adze
 		}
+		player.checkBot();//anti afk bot
 	}
 
     public static void addLog(TreeDefinitions definitions, boolean usingBeaver, Player player) {

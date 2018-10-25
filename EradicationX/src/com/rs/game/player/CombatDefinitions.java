@@ -467,18 +467,26 @@ public final class CombatDefinitions implements Serializable {
 		return bonuses;
 	}
 
-	public void refreshBonuses() {
+	public void refreshBonuses() //Better calculation for ranged-strength bonus.
+	{
 		bonuses = new int[18];
-		for (Item item : player.getEquipment().getItems().getItems()) {
-			if (item == null)
-				continue;
+		for (Item item : player.getEquipment().getItems().getItems()) 
+		{
+			if (item == null) continue;
 			int[] bonuses = ItemBonuses.getItemBonuses(item.getId());
-			if (bonuses == null)
-				continue;
-			for (int id = 0; id < bonuses.length; id++) {
-				//if (id == RANGED_STR_BONUS
-				//		&& this.bonuses[RANGED_STR_BONUS] != 0)
-				//	continue;
+			if (bonuses == null) continue;
+			
+			boolean isAmmo = item.getDefinitions().getEquipSlot() == Equipment.SLOT_ARROWS;
+			
+			boolean throwWeaponEquipped = false;
+			if (player.getEquipment().getItem(Equipment.SLOT_WEAPON) != null)
+                throwWeaponEquipped = player.getEquipment().getItem(Equipment.SLOT_WEAPON).getDefinitions().isStackable();
+			
+			for (int id = 0; id < bonuses.length; id++) 
+			{
+				//if (id == RANGED_STR_BONUS && this.bonuses[RANGED_STR_BONUS] != 0) continue;
+				
+				if (isAmmo && throwWeaponEquipped) return; //Doesn't add ammo bonuses if your weapon is your ammo.
 				this.bonuses[id] += bonuses[id];
 			}
 		}

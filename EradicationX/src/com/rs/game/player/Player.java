@@ -22,6 +22,7 @@ import com.rs.game.minigames.duel.DuelRules;
 import com.rs.game.npc.NPC;
 import com.rs.game.npc.familiar.Familiar;
 import com.rs.game.npc.godwars.zaros.Nex;
+import com.rs.game.npc.others.AntiBot;
 import com.rs.game.npc.pet.Pet;
 import com.rs.game.player.QuestManager.Quests;
 import com.rs.game.player.actions.PlayerCombat;
@@ -6533,6 +6534,14 @@ public class Player extends Entity {
 		this.hasAntiBot = hasAntiBot;
 	}
 	
-	
+	public void checkBot() {
+		if(!isHasAntiBot()) {
+			if (Utils.random(30) == 0) {
+				new AntiBot(this, this);
+				sendMessage("<col=ff0000>An Anti-Bot appears out of nowhere.");
+			    setHasAntiBot(true);
+			}
+		}
+	}
 
 }

@@ -1880,12 +1880,7 @@ public final class ObjectHandler {
                     player.lock(4);
                     player.getPackets().sendGameMessage(THIEVING_MESSAGE);
                     player.setNextAnimation(THIEVING_ANIMATION);
-                    if(!player.isHasAntiBot())
-    					if (Utils.random(2) == 0) {
-    						new AntiBot(player, player);
-    				    	player.sendMessage("<col=ff0000>An Anti-Bot appears out of nowhere.");
-    				    	player.setHasAntiBot(true);
-    					}
+                    player.checkBot();//anti afk bot
                 } else if (id == 62677) {
                     player.getDominionTower().openRewards();
                 } else if (id == 62688) {

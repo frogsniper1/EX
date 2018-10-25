@@ -448,6 +448,7 @@ public class Cooking extends Action {
 	@Override
 	public int processWithDelay(Player player) {
 		amount--;
+		player.checkBot();//anti afk bot
 		player.setNextAnimation(object.getDefinitions().name.contains("fire") ? FIRE_COOKING
 				: RANGE_COOKING);
 		if ((player.getSkills().getLevel(Skills.COOKING) >= cook

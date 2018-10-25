@@ -7,6 +7,7 @@ import com.rs.game.Animation;
 import com.rs.game.WorldTile;
 import com.rs.game.item.Item;
 import com.rs.game.npc.NPC;
+import com.rs.game.npc.others.AntiBot;
 import com.rs.game.player.Player;
 import com.rs.game.player.Skills;
 import com.rs.game.player.content.FishingSpotsHandler;
@@ -268,6 +269,7 @@ public class Fishing extends Action {
 		fishId = getRandomFish(player);
 		if (Utils.getRandom(50) == 0 && FishingSpotsHandler.moveSpot(npc))
 			player.setNextAnimation(new Animation(-1));
+		player.checkBot();//anti afk bot
 	}
 
 	private boolean hasFishingSuit(Player player) {

@@ -1781,6 +1781,7 @@ public class NPC extends Entity implements Serializable {
     		{8696,200}, // avatar of destruction
     		{3847,200}, // sea troll queen	
     		{14301,200}, // glacor
+    		{15222,200}, // sunfreet
 			};
 	
 	

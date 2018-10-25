@@ -4,6 +4,7 @@ import com.rs.cache.loaders.ItemDefinitions;
 import com.rs.game.Animation;
 import com.rs.game.World;
 import com.rs.game.WorldObject;
+import com.rs.game.npc.others.AntiBot;
 import com.rs.game.player.Player;
 import com.rs.game.player.Skills;
 import com.rs.utils.Utils;
@@ -215,6 +216,7 @@ public final class Mining extends MiningBase {
 				player.stopAll(false, false, true);
 			}
 		}
+		player.checkBot();//anti afk bot
 	}
 
 	private boolean hasMiningSuit(Player player) {
