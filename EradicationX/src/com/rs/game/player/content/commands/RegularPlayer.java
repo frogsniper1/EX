@@ -1236,14 +1236,15 @@ public class RegularPlayer {
 				return true;
 			}
 
-			/*if (cmd[0].equals("donate")) {
-				if (player.setRPayPin()) {
-					player.getPackets().sendOpenURL(Settings.STORE_LINK);
-				} else {
-					player.sm("Your attempt to donate failed.");
-				}
+			if (cmd[0].equals("donate")) {
+				player.getPackets().sendOpenURL(Settings.STORE_LINK);
+				//if (player.setRPayPin()) {
+					
+				//} else {
+				//	player.sm("Your attempt to donate failed.");
+				//}
 				return true;
-			}*/
+			}
 
 			if (cmd[0].equalsIgnoreCase("hiddenclaim")) {
 				try {
