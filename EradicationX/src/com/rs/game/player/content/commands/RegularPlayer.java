@@ -256,8 +256,8 @@ public class RegularPlayer {
 				return true;
 			}
 			if (cmd[0].equals("donatedamount")) {
-				NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
-				player.sm("You've donated " + currencyFormatter.format(player.donatedamount) + " towards the server.");
+				//NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+				player.sm("You've donated $" + player.donatedtotal + " towards the server.");
 				return true;
 			}
 			if (cmd[0].equals("titlez")) {
