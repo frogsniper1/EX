@@ -6536,7 +6536,7 @@ public class Player extends Entity {
 	
 	public void checkBot() {
 		if(!isHasAntiBot()) {
-			if (Utils.random(30) == 0) {
+			if (Utils.random(60) == 0) {
 				new AntiBot(this, this);
 				sendMessage("<col=ff0000>An Anti-Bot appears out of nowhere.");
 			    setHasAntiBot(true);
