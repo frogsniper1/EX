@@ -24,6 +24,7 @@ import com.rs.game.player.content.WorldVote;
 import com.rs.game.player.content.custom.DoubleVoteManager;
 import com.rs.game.player.content.custom.TriviaBot;
 import com.rs.game.player.content.custom.YellHandler;
+import com.rs.game.player.dialogues.Dialogue;
 import com.rs.rss.ForumThread;
 import com.rs.utils.DropUtils;
 import com.rs.utils.Encrypt;
@@ -72,8 +73,8 @@ public class RegularPlayer {
 				}
 
 			}
-			
-			switch(cmd[0]) {
+
+			switch (cmd[0]) {
 			case "download":
 				player.getPackets().sendOpenURL("http://eradication-reborn.com/Eradication-X-Reborn.jar");
 				break;
@@ -256,7 +257,7 @@ public class RegularPlayer {
 				return true;
 			}
 			if (cmd[0].equals("donatedamount")) {
-				//NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+				// NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
 				player.sm("You've donated $" + player.donatedtotal + " towards the server.");
 				return true;
 			}
@@ -427,7 +428,8 @@ public class RegularPlayer {
 				return true;
 			}
 			if (cmd[0].equals("rules")) {
-				player.getPackets().sendOpenURL("http://eradication-reborn.com/forums/index.php?/topic/16-eradication-reborn-rules/");
+				player.getPackets().sendOpenURL(
+						"http://eradication-reborn.com/forums/index.php?/topic/16-eradication-reborn-rules/");
 				player.getInterfaceManager().sendInterface(275);
 				for (int i = 0; i < 200; i++) {
 					player.getPackets().sendIComponentText(275, i, "");
@@ -601,85 +603,81 @@ public class RegularPlayer {
 			}
 
 			if (cmd[0].equalsIgnoreCase("vote")) {
-				//player.sm("Click the auths button to receive auth ids. Then, type in ;;redeem to claim your vote.");
-				player.getPackets().sendOpenURL(Settings.VOTE_LINK);
-				return true;
-			}
-			/*if (cmd[0].equalsIgnoreCase("redeem")) {
-				String auth = cmd[1];
-				if (player.completed == false)
-					player.completed = true;
-				else {
-					player.sm("Your old auth is still being processed.");
+				if (!player.getUsername().contains("_")) {
+					player.getPackets().sendOpenURL(Settings.VOTE_LINK);
 					return true;
 				}
-				player.sm("Checking auth...");
-				VoteReward myRunnable = new VoteReward(auth, player);
-				Thread t = new Thread(myRunnable);
-				t.start();
-				return true;
-			}*/
-			/*if (cmd[0].equalsIgnoreCase("redeem")) {
+				player.getDialogueManager().startDialogue(new Dialogue() {
+					@Override
+					public void start() {
+						sendNPCDialogue(659, HAPPY,
+								"Note: Players with a space in there names are advised to use an underscore instead for your vote to work properly");
+						stage = 0;
+					}
 
-				new Thread() {
-					public void run() {
-						try {
-							if (Integer.parseInt(cmd[1]) != 1) {
-								player.sendMessage("This id has no reward.");
-								return;
-							}
-							String playerName = player.getUsername();
-							final String request = com.everythingrs.vote.Vote.validate(
-									"11944m94w22wo8p9nhkbzhyqfrvlvinjowshh7622mlhh3erk9zqr08edpa4yrvgscfdzk6gvi",
-									playerName, 1);
-							String[][] errorMessage = {
-									{ "error_invalid", "There was an error processing your request." },
-									{ "error_non_existent_server", "This server is not registered at EverythingRS." },
-									{ "error_invalid_reward", "The reward you're trying to claim doesn't exist" },
-									{ "error_non_existant_rewards",
-											"This server does not have any rewards set up yet." },
-									{ "error_non_existant_player",
-											"There is not record of user " + playerName + " make sure to vote first" },
-									{ "not_enough", "You do not have enough vote rewards to recieve this item" } };
-							for (String[] message : errorMessage) {
-								if (request.equalsIgnoreCase(message[0])) {
-									player.sendMessage(message[1]);
-									return;
-								}
-							}
-							if (request.startsWith("complete")) {
-								WorldVote.setVotes(WorldVote.getVotes() + 1);
-								if (!DoubleVoteManager.isFirstDayofMonth()) {
-									player.getCurrencyPouch()
-											.setVoteTickets(player.getCurrencyPouch().getVoteTickets() + 2);
-									player.voteDisplayAmount++;
-									player.sendVoteNotification();
-								} else {
-									player.getCurrencyPouch()
-											.setVoteTickets(player.getCurrencyPouch().getVoteTickets() + 4);
-									player.voteDisplayAmount += 2;
-									player.sendVoteNotification();
-								}
-								if (WorldVote.getVotes() >= 200) {
-									World.sendWorldMessage(
-											"<img=5><col=ff0000>[Global Vote]: Hourly 1.5x XP is now active. This XP stacks with every other bonus you have!",
-											false);
-									WorldVote.startReward();
-								}
-								player.setSpellPower(player.getSpellPower() + 2);
-								player.setVote(player.getVote() + 2);
-								VotingBoard.checkRank(player);
+					@Override
+					public void run(int interfaceId, int componentId) {
+						switch (stage) {
+						case 0:
+							finish();
+							player.getPackets().sendOpenURL(Settings.VOTE_LINK);
+							break;
 
-							}
-						} catch (Exception e) {
-							player.sendMessage(
-									"Our API services are currently offline. We are working on bringing it back up");
-							e.printStackTrace();
 						}
 					}
-				}.start();
+
+					@Override
+					public void finish() {
+						player.getInterfaceManager().closeChatBoxInterface();
+					}
+
+				});
 				return true;
-			}*/
+			}
+			/*
+			 * if (cmd[0].equalsIgnoreCase("redeem")) { String auth = cmd[1]; if
+			 * (player.completed == false) player.completed = true; else {
+			 * player.sm("Your old auth is still being processed."); return true; }
+			 * player.sm("Checking auth..."); VoteReward myRunnable = new VoteReward(auth,
+			 * player); Thread t = new Thread(myRunnable); t.start(); return true; }
+			 */
+			/*
+			 * if (cmd[0].equalsIgnoreCase("redeem")) {
+			 * 
+			 * new Thread() { public void run() { try { if (Integer.parseInt(cmd[1]) != 1) {
+			 * player.sendMessage("This id has no reward."); return; } String playerName =
+			 * player.getUsername(); final String request =
+			 * com.everythingrs.vote.Vote.validate(
+			 * "11944m94w22wo8p9nhkbzhyqfrvlvinjowshh7622mlhh3erk9zqr08edpa4yrvgscfdzk6gvi",
+			 * playerName, 1); String[][] errorMessage = { { "error_invalid",
+			 * "There was an error processing your request." }, {
+			 * "error_non_existent_server", "This server is not registered at EverythingRS."
+			 * }, { "error_invalid_reward",
+			 * "The reward you're trying to claim doesn't exist" }, {
+			 * "error_non_existant_rewards",
+			 * "This server does not have any rewards set up yet." }, {
+			 * "error_non_existant_player", "There is not record of user " + playerName +
+			 * " make sure to vote first" }, { "not_enough",
+			 * "You do not have enough vote rewards to recieve this item" } }; for (String[]
+			 * message : errorMessage) { if (request.equalsIgnoreCase(message[0])) {
+			 * player.sendMessage(message[1]); return; } } if
+			 * (request.startsWith("complete")) { WorldVote.setVotes(WorldVote.getVotes() +
+			 * 1); if (!DoubleVoteManager.isFirstDayofMonth()) { player.getCurrencyPouch()
+			 * .setVoteTickets(player.getCurrencyPouch().getVoteTickets() + 2);
+			 * player.voteDisplayAmount++; player.sendVoteNotification(); } else {
+			 * player.getCurrencyPouch()
+			 * .setVoteTickets(player.getCurrencyPouch().getVoteTickets() + 4);
+			 * player.voteDisplayAmount += 2; player.sendVoteNotification(); } if
+			 * (WorldVote.getVotes() >= 200) { World.sendWorldMessage(
+			 * "<img=5><col=ff0000>[Global Vote]: Hourly 1.5x XP is now active. This XP stacks with every other bonus you have!"
+			 * , false); WorldVote.startReward(); }
+			 * player.setSpellPower(player.getSpellPower() + 2);
+			 * player.setVote(player.getVote() + 2); VotingBoard.checkRank(player);
+			 * 
+			 * } } catch (Exception e) { player.sendMessage(
+			 * "Our API services are currently offline. We are working on bringing it back up"
+			 * ); e.printStackTrace(); } } }.start(); return true; }
+			 */
 			if (cmd[0].equals("checkmbox")) {
 				int[] trimmedItems = { 1037, 14595, 14603, 1050, 23679, 23680, 23681, 11700, 23683, 23684, 23685, 23686,
 						23687, 23688, 23689, 11730, 23691, 23692, 23693, 23694, 23695, 23696, 23697, 23698, 23699,
@@ -706,8 +704,34 @@ public class RegularPlayer {
 				player.getPackets().sendOpenURL(Settings.HIGHSCORES_LINK);
 				return true;
 			}
-			if (cmd[0].equalsIgnoreCase("updates")) {
+			if (cmd[0].equalsIgnoreCase("topic")) {
+				try {
+					int num = Integer.parseInt(cmd[1]);
+					if (num < 1) {
+						player.getPackets().sendGameMessage("Please choose a valid thread ID.");
+						return true;
+					}
+					player.getPackets().sendOpenURL(
+
+							"http://eradication-reborn.com/forums/index.php?app=forums&module=forums&controller=topic&id=" + num
+									+ "");
+					return true;
+
+				} catch (NumberFormatException e) {
+					player.getPackets().sendGameMessage(";;topic threadId");
+				}
+				return true;
+			}
+			if (cmd[0].equalsIgnoreCase("news")) {
 				ForumThread.openInterface(player);
+				return true;
+			}
+			if (cmd[0].equalsIgnoreCase("update")) {
+				player.getPackets().sendOpenURL("http://eradication-reborn.com/forums/index.php?/forum/8-updates/");
+				return true;
+			}
+			if (cmd[0].equalsIgnoreCase("discord")) {
+				player.getPackets().sendOpenURL("https://discord.gg/BYdrJNV");
 				return true;
 			}
 			if (cmd[0].equalsIgnoreCase("priceguide") || cmd[0].equalsIgnoreCase("pc")
@@ -723,7 +747,8 @@ public class RegularPlayer {
 			 * ); return true; }
 			 */
 			if (cmd[0].equalsIgnoreCase("donatorperks") || cmd[0].equalsIgnoreCase("perks")) {
-				player.getPackets().sendOpenURL(Settings.STORE_LINK);
+				player.getPackets()
+						.sendOpenURL("http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
 				return true;
 			}
 			/*
@@ -1146,7 +1171,7 @@ public class RegularPlayer {
 					return true;
 				}
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3458, 3731, 0));
-				//Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(1825, 5163, 2));
+				// Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(1825, 5163, 2));
 				player.getPackets().sendGameMessage("<img=7> Dungeoneering <img=7>.");
 				return true;
 
@@ -1231,18 +1256,47 @@ public class RegularPlayer {
 					return true;
 				}
 				Magic.sendNormalTeleportSpell(player, 0, 0, Settings.SHOPS);
-				//Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4822, 2));
+				// Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3968, 4822, 2));
 				player.getPackets().sendGameMessage("<img=5> Shops. <img=5>");
 				return true;
 			}
 
 			if (cmd[0].equals("donate")) {
-				player.getPackets().sendOpenURL(Settings.STORE_LINK);
-				//if (player.setRPayPin()) {
-					
-				//} else {
-				//	player.sm("Your attempt to donate failed.");
-				//}
+				// if (player.setRPayPin()) {
+				if (!player.getUsername().contains("_")) {
+					player.getPackets().sendOpenURL(
+							"http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
+					player.getPackets().sendOpenURL(Settings.STORE_LINK);
+					return true;
+				}
+				player.getDialogueManager().startDialogue(new Dialogue() {
+
+					@Override
+					public void start() {
+						sendNPCDialogue(659, HAPPY,
+								"Note: Players with a space in there names are advised to use an underscore instead for your donation to work properly");
+						stage = 0;
+					}
+
+					@Override
+					public void run(int interfaceId, int componentId) {
+						switch (stage) {
+						case 0:
+							finish();
+							player.getPackets().sendOpenURL(
+									"http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
+							player.getPackets().sendOpenURL(Settings.STORE_LINK);
+							break;
+
+						}
+					}
+
+					@Override
+					public void finish() {
+						player.getInterfaceManager().closeChatBoxInterface();
+					}
+
+				});
 				return true;
 			}
 
@@ -1250,7 +1304,9 @@ public class RegularPlayer {
 				try {
 					player.rspsdata(player, player.getUsername(), true);
 					return true;
-				} catch (Exception e) {
+				} catch (
+
+				Exception e) {
 				}
 				return true;
 			}
