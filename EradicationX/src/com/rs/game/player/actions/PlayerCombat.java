@@ -1978,11 +1978,11 @@ public class PlayerCombat extends Action {
 			if (weaponId != -1) {
 				if ((quantity == -3 && Utils.getRandom(10) < 2) || (quantity != -3 && Utils.getRandom(3) > 0)) {
 					int capeId = player.getEquipment().getCapeId();
-					if (capeId != -1
+					if ((capeId != -1
 							&& ItemDefinitions.getItemDefinitions(capeId)
 							.getName().contains("Ava's") || ItemDefinitions.getItemDefinitions(capeId)
 							.getName().contains("Completionist") || weaponId == 25202 ||  ItemDefinitions.getItemDefinitions(capeId)
-									.getName().contains("10B"))
+									.getName().contains("10B")) || player.getPerksManager().avasSecret)
 						return; // nothing happens
 				} else {		
 					player.getEquipment().removeAmmo(weaponId, quantity);
@@ -2000,11 +2000,11 @@ public class PlayerCombat extends Action {
 			if (Utils.getRandom(3) > 0) {
 				int capeId = player.getEquipment().getCapeId();
 				int weaponId = player.getEquipment().getWeaponId();
-				if (capeId != -1
+				if ((capeId != -1
 						&& ItemDefinitions.getItemDefinitions(capeId).getName()
 						.contains("Ava's") || ItemDefinitions.getItemDefinitions(capeId)
 						.getName().contains("Completionist") || weaponId == 25202 || ItemDefinitions.getItemDefinitions(capeId)
-								.getName().contains("10B"))
+								.getName().contains("10B")) || player.getPerksManager().avasSecret)
 					return; // nothing happens
 			} else {
 				player.getEquipment().removeAmmo(ammoId, quantity);

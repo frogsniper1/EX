@@ -9,8 +9,7 @@ public class PerksManager{
 	/**
 	 * A list of available perks.
 	 */
-	public boolean unliRun, sleightOfHand, masterFisherman, coinCollector,
-			prayerBetrayer, avasSecret, keyExpert, dragonTrainer, gwdSpecialist, dungeon, petChanter, perslaysion,
+	public boolean unliRun, sleightOfHand, masterFisherman, prayerBetrayer, avasSecret, keyExpert, dragonTrainer, gwdSpecialist, dungeon, petChanter, perslaysion,
 			overclocked, elfFiend, masterChef, masterDiviner, quarryMaster, miniGamer, masterFledger, thePiromaniac,
 			huntsman, portsMaster, investigator, divineDoubler, imbuedFocus, alchemicSmith, lifeSteal, regenerator,
 			butcher, slayerporter, basher, unDead, reflector, petmaster, petlooter, solomon;
@@ -54,6 +53,8 @@ public class PerksManager{
 		sendText(13, (unliRun ? Colors.GREEN : Colors.RED) + "[1] Unlimited Run");
 		sendText(14, (sleightOfHand ? Colors.GREEN : Colors.RED) + "[2] Sleight of Hand");
 		sendText(15, (masterFisherman ? Colors.GREEN : Colors.RED) + "[3] Master Fisherman");
+		sendText(16, (prayerBetrayer ? Colors.GREEN : Colors.RED) + "[4] Prayer Betrayer");
+		sendText(17, (avasSecret ? Colors.GREEN : Colors.RED) + "[5] Ava's Effect");
 		//sendText(13, (solomon ? Colors.GREEN : Colors.RED) + "[1] Solomon");
 		//sendText(14, (unliRun ? Colors.GREEN : Colors.RED) + "[2] Unlimited Run");
 		//sendText(15, (greenThumb ? Colors.GREEN : Colors.RED) + "[3] Green Thumb");
@@ -234,7 +235,7 @@ public class PerksManager{
 			player.getPerksManager().delicateCraftsman = true;
 			player.sm(Colors.GREEN+"You succesfully bought Delicate Craftsman!");
 			player.getPerksManager().displayAvailablePerks();
-			break;*/
+			break;
 		case 13:
 			if(player.getPerksManager().coinCollector) {
 				player.sm("You already bought this perk.");
@@ -245,7 +246,7 @@ public class PerksManager{
 			player.getPerksManager().coinCollector = true;
 			player.sm(Colors.GREEN+"You succesfully bought Coin Collector!");
 			player.getPerksManager().displayAvailablePerks();
-			break;
+			break;*/
 		case 14:
 			if(player.getPerksManager().prayerBetrayer) {
 				player.sm("You already bought this perk.");

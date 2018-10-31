@@ -36,6 +36,7 @@ import com.rs.game.player.quest.QNames;
 import com.rs.game.tasks.WorldTask;
 import com.rs.game.tasks.WorldTasksManager;
 import com.rs.game.player.Skills;
+import com.rs.utils.Colors;
 import com.rs.utils.Logger;
 import com.rs.utils.MapAreas;
 import com.rs.utils.NPCBonuses;
@@ -1315,7 +1316,12 @@ public class NPC extends Entity implements Serializable {
         			else
         				killer.sm("No luck this time, I should try killing more for the bones.");
             }
-        	if (noDrop()) return;	
+        	if (noDrop()) return;
+        	
+        	if (killer.getPerksManager().keyExpert && Utils.random(100) >= 80) {
+        		killer.sm(Colors.REALORANGE+"[PerksManager] You found a Crystal Key!");
+        		sendDrop(killer, new Drop(989, 0,1,1,false));
+        	}
         	
         	handleBossKillRatio(killer,false);
         	

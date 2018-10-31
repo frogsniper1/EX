@@ -1,6 +1,7 @@
 package com.rs.game.player.dialogues;
 
 import com.rs.game.item.Item;
+import com.rs.utils.Colors;
 import com.rs.utils.Utils;
 
 // Referenced classes of package com.rs.game.player.dialogues:
@@ -68,7 +69,11 @@ public class CrystalKey1 extends Dialogue {
 						item = new Item(CrystalKeyItemsQ500[i], 500);
 						break;
 					}
-				player.getInventory().deleteItem(989, 1);
+				if (player.getPerksManager().keyExpert && Utils.random(100) >= 80) {
+					player.sm(Colors.REALORANGE+"[PerksManager] Your Key Expert perk magically retain the Ckey!");
+				}else{
+					player.getInventory().deleteItem(989, 1);
+				}
 				player.getInterfaceManager().closeChatBoxInterface();
 				player.getInventory().addItem(item);
 				return;
