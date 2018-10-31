@@ -24,6 +24,7 @@ import com.rs.game.player.content.WorldVote;
 import com.rs.game.player.content.custom.DoubleVoteManager;
 import com.rs.game.player.content.custom.TriviaBot;
 import com.rs.game.player.content.custom.YellHandler;
+import com.rs.game.player.content.ranking.DonationRank;
 import com.rs.game.player.dialogues.Dialogue;
 import com.rs.rss.ForumThread;
 import com.rs.utils.DropUtils;
@@ -75,9 +76,12 @@ public class RegularPlayer {
 			}
 
 			switch (cmd[0]) {
+			case "topdonator":
+			DonationRank.checkRank(player);
+			return true;
 			case "download":
 				player.getPackets().sendOpenURL("http://eradication-reborn.com/Eradication-X-Reborn.jar");
-				break;
+				return true;
 			case "npcdrops":
 				StringBuilder npcNameSB = new StringBuilder(cmd[1]);
 				if (cmd.length > 1) {

@@ -1061,5 +1061,9 @@ public final class Utils {
 		int distanceY = y1 - y2;
 		return distanceX < size2 && distanceX > -size1 && distanceY < size2 && distanceY > -size1;
 	}
+	
+	public static String getFormattedNumber(int value) {
+		return new DecimalFormat("#,###,##0").format(value).toString();
+	}
 
 }

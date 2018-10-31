@@ -16,6 +16,7 @@ import com.rs.game.player.content.FishingSpotsHandler;
 import com.rs.game.player.content.FriendChatsManager;
 import com.rs.game.player.content.WorldVote;
 import com.rs.game.player.content.clans.ClansManager;
+import com.rs.game.player.content.ranking.DonationRank;
 import com.rs.game.player.controlers.ControlerHandler;
 import com.rs.game.player.cutscenes.CutscenesHandler;
 import com.rs.game.player.dialogues.DialogueHandler;
@@ -84,6 +85,7 @@ public class Initializer {
 		CoresManager.init();
 		World.init();
 		RegionBuilder.init();
+		DonationRank.init();
 		//PlayersOnline.online();
 	}
 }

@@ -60,6 +60,7 @@ import com.rs.net.Session;
 import com.rs.net.decoders.WorldPacketsDecoder;
 import com.rs.net.decoders.handlers.ButtonHandler;
 import com.rs.net.encoders.WorldPacketsEncoder;
+import com.rs.utils.Colors;
 import com.rs.utils.DisplayNames;
 import com.rs.utils.DisplayNamesManager;
 import com.rs.utils.Highscores;
@@ -3973,7 +3974,7 @@ public class Player extends Entity {
 				String boughtitems = "";
 				int price = 0;
 				int rdon = 0, edon = 0, mbox = 0, qfc = 0, bfs = 0, drs = 0, dls = 0, dms = 0, ts = 0, ps = 0, vs = 0, dss = 0, ess = 0, ass = 0,
-						sss = 0, sdr = 0, er = 0, dtd = 0, hxl = 0, row = 0, dr = 0, tbox = 0, cbox = 0;
+						sss = 0, sdr = 0, er = 0, dtd = 0, hxl = 0, row = 0, dr = 0, tbox = 0, cbox = 0 ,hussein = 0, bandit = 0, poseidon  = 0, rosary  = 0, avas = 0;
 				boolean nothin = false;
 				String[] ary = results.split(",");
 					 for(int i = 0; i < ary.length; i++) {
@@ -4123,6 +4124,41 @@ public class Player extends Entity {
 								cbox += 10;
 								price += 60;
 							break;
+							case "32408": //hussein bolt
+								player.getPerksManager().unliRun = true;
+								++hussein;
+								price += 5;
+								player.sendMessage("You've purchased: [" + Colors.RED + "Hussein Bolt Perk</col>]. "
+										+ "Type ;;perks to see all your game perks.");
+							break;
+							case "32409": //master bandit
+								player.getPerksManager().sleightOfHand = true;
+								++bandit;
+								price += 10;
+								player.sendMessage("You've purchased: [" + Colors.RED + "Master Bandit Perk</col>]. "
+										+ "Type ;;perks to see all your game perks.");
+							break;
+							case "32410": //poseidon hand
+								player.getPerksManager().masterFisherman = true;
+								++poseidon;
+								price += 10;
+								player.sendMessage("You've purchased: [" + Colors.RED + "Poseidon Hand Perk</col>]. "
+										+ "Type ;;perks to see all your game perks.");
+							break;
+							case "32411": //rosary mastery
+								player.getPerksManager().prayerBetrayer = true;
+								++rosary;
+								price += 8;
+								player.sendMessage("You've purchased: [" + Colors.RED + "Rosary Master Perk</col>]. "
+										+ "Type ;;perks to see all your game perks.");
+							break;
+							case "32412": //Ava's Accumulator
+								player.getPerksManager().avasSecret = true;
+								++avas;
+								price += 5;
+								player.sendMessage("You've purchased: [" + Colors.RED + "Ava's Accumulator Perk</col>]. "
+										+ "Type ;;perks to see all your game perks.");
+							break;
 						}
 					}
 					if (!nothin) {
@@ -4172,6 +4208,16 @@ public class Player extends Entity {
 							boughtitems += tbox + "x Trimmed Box, ";
 						if (cbox != 0)
 							boughtitems += cbox + "x Cosmetic Box, ";
+						if (hussein != 0)
+							boughtitems += hussein + "x Hussein Bolt Perk, ";
+						if (bandit != 0)
+							boughtitems += bandit + "x Master Bandit Perk, ";
+						if (poseidon != 0)
+							boughtitems += poseidon + "x Poseidons Hand Perk, ";
+						if (rosary != 0)
+							boughtitems += rosary + "x Rosary Mastery Perk, ";
+						if (avas != 0)
+							boughtitems += avas + "x Ava's Accumulator Perk, ";
 						String newboughtitems = "";
 						newboughtitems = boughtitems.substring(0,boughtitems.length() - 2) + "!";
 						if (!hidden) {

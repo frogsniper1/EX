@@ -56,10 +56,10 @@ public class PerksManager implements Serializable{
 		sendText(10, Colors.CYAN + "Game Perks can be purchased from our ::store.");
 		sendText(11, Colors.RED + "Red - not active</col>  -  " + Colors.GREEN + "Green - active</col>.");
 		sendText(12, "</shad>----------------------");
-		sendText(13, (unliRun ? Colors.GREEN : Colors.RED) + "[1] Unlimited Run");
-		sendText(14, (sleightOfHand ? Colors.GREEN : Colors.RED) + "[2] Sleight of Hand");
-		sendText(15, (masterFisherman ? Colors.GREEN : Colors.RED) + "[3] Master Fisherman");
-		sendText(16, (prayerBetrayer ? Colors.GREEN : Colors.RED) + "[4] Prayer Reduction");
+		sendText(13, (unliRun ? Colors.GREEN : Colors.RED) + "[1] Hussein Bolt");
+		sendText(14, (sleightOfHand ? Colors.GREEN : Colors.RED) + "[2] Master Bandit");
+		sendText(15, (masterFisherman ? Colors.GREEN : Colors.RED) + "[3] Poseidons hand");
+		sendText(16, (prayerBetrayer ? Colors.GREEN : Colors.RED) + "[4] Rosary Mastery");
 		sendText(17, (avasSecret ? Colors.GREEN : Colors.RED) + "[5] Ava's Effect");
 		sendText(18, (keyExpert ? Colors.GREEN : Colors.RED) + "[6] Key Expert");
 		//sendText(13, (solomon ? Colors.GREEN : Colors.RED) + "[1] Solomon");
