@@ -11,6 +11,7 @@ import com.rs.game.npc.others.AntiBot;
 import com.rs.game.player.Player;
 import com.rs.game.player.Skills;
 import com.rs.game.player.content.FishingSpotsHandler;
+import com.rs.utils.Colors;
 import com.rs.utils.Utils;
 
 public class Fishing extends Action {
@@ -252,6 +253,8 @@ public class Fishing extends Action {
 		Item fish = new Item(spot.getFish()[fishId].getId(),(player.getPerksManager().masterFisherman ? 2 : 1) * (multipleCatch ? 2
 				: 1));
 		player.getPackets().sendGameMessage(getMessage(fish), true);
+		if(player.getPerksManager().masterFisherman)
+		    player.sm(Colors.REALORANGE+"[PerksManager] Your Poseidon Hand perk doubles your gain!");
 		player.getInventory().deleteItem(spot.getBait(), 1);
 		double totalXp = spot.getFish()[fishId].getXp();
 		if (hasFishingSuit(player))

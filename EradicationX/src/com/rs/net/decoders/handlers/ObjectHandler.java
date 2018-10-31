@@ -1969,7 +1969,7 @@ public final class ObjectHandler {
 				  player.setAmountThieved(amountThieved);
                   player.getInventory().addItem(rewardId, 1);
                   player.getSkills().addXp(Skills.THIEVING, exp);
-                  player.sm(Colors.REALORANGE+"[PerksManager] Your sleight of hand doubles your gain!");
+                  player.sm(Colors.REALORANGE+"[PerksManager] Your Master bandit perk doubles your gain!");
 			}
         }, objectDef.getSizeX(), objectDef.getSizeY(), object.getRotation()));
     }
