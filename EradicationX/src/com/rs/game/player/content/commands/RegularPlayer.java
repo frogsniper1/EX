@@ -746,7 +746,12 @@ public class RegularPlayer {
 			 * "http://eradicationx.com/forums/index.php?/topic/3916-boss-drop-guide-with-all-drop-rates/"
 			 * ); return true; }
 			 */
-			if (cmd[0].equalsIgnoreCase("donatorperks") || cmd[0].equalsIgnoreCase("perks")) {
+			if (cmd[0].equalsIgnoreCase("perks")) {
+				player.getPerksManager().displayAvailablePerks();
+				return true;
+			}
+			
+			if (cmd[0].equalsIgnoreCase("donatorperks")) {
 				player.getPackets()
 						.sendOpenURL("http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
 				return true;
@@ -1261,11 +1266,11 @@ public class RegularPlayer {
 				return true;
 			}
 
-			if (cmd[0].equals("donate")) {
+			if (cmd[0].equals("donate") || cmd[0].equals("store")) {
 				// if (player.setRPayPin()) {
 				if (!player.getUsername().contains("_")) {
-					player.getPackets().sendOpenURL(
-							"http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
+					//player.getPackets().sendOpenURL(
+					//		"http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
 					player.getPackets().sendOpenURL(Settings.STORE_LINK);
 					return true;
 				}
@@ -1283,8 +1288,8 @@ public class RegularPlayer {
 						switch (stage) {
 						case 0:
 							finish();
-							player.getPackets().sendOpenURL(
-									"http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
+							//player.getPackets().sendOpenURL(
+							//		"http://eradication-reborn.com/forums/index.php?/topic/15-donator-rank-benefits/");
 							player.getPackets().sendOpenURL(Settings.STORE_LINK);
 							break;
 
