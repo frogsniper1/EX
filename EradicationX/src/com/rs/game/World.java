@@ -118,7 +118,7 @@ public final class World {
 
 	public static final void init() {
 		// addLogicPacketsTask();
-		readForums();
+		//readForums();
 		TriviaBot.getInstance().start();
 		BossHighlight.getInstance().start();
 		addRestoreRunEnergyTask();

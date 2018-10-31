@@ -3,11 +3,20 @@ package com.rs.tools;
 import java.io.IOException;
 
 import com.rs.cache.Cache;
+import com.rs.utils.Utils;
 
 public class Test {
 
 	public static void main(String[] args) throws IOException {
 		Cache.init();
+		int count = 0;
+		for(int i = 0;i<100;i++) {
+			if(Utils.random(100) > 50)
+				count++;
+				
+		}
+		System.out.println(count);
+		
 		/*
 		 * for(int i = 0; i < 24000; i++) {
 		 * ItemDefinitions.getItemDefinitions(i); }
