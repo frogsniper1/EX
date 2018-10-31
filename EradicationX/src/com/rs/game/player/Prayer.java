@@ -833,11 +833,14 @@ public class Prayer implements Serializable {
 	}
 
 	public void drainPrayerOnHalf() {
-		if (prayerpoints > 0) {
-			prayerpoints = prayerpoints / 2;
-			refreshPrayerPoints();
-		}
-	}
+        if (player.getPerksManager().prayerBetrayer) {
+            return;
+        }
+        if (prayerpoints > 0) {
+            prayerpoints = prayerpoints / (player.getPerksManager().prayerBetrayer ? 4 : 2);
+            refreshPrayerPoints();
+        }
+    }
 
 	public boolean hasFullPrayerpoints() {
 		return getPrayerpoints() >= player.getSkills().getLevelForXp(
@@ -845,6 +848,12 @@ public class Prayer implements Serializable {
 	}
 
 	public void drainPrayer(int amount) {
+		 if (player.getPerksManager().prayerBetrayer) {
+	            if (Utils.random(6) < 3)
+	                return;
+	            if (amount > 2)
+	                amount = amount / 2;
+	        }
 		if ((prayerpoints - amount) >= 0)
 			prayerpoints -= amount;
 		else

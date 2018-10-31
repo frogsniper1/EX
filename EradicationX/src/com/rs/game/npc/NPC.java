@@ -1337,9 +1337,12 @@ public class NPC extends Entity implements Serializable {
                     } else {
                     	if(killer.getdropRatio().containsKey(getId()) && killer.getdropRatio().get(getId()) <= 0) {
     						String dropname = ItemDefinitions.getItemDefinitions(drop.getItemId()).getName();
-    						for (String itemName : Settings.RARE_DROPS) 
+    						for (String itemName : Settings.RARE_DROPS) {
+    							if(itemName.contains("Slayer Helm Part Key"))
+    								continue;
     							if(dropname.toLowerCase().contains(itemName.toLowerCase()))
     								possibleDrops[possibleDropsCount++] = drop;
+    						}
                     	}else if ((Utils.getRandomDouble(99) + 1) <= (drop.getRate() + killer.customDropRate + Settings.WorldDropRate) * getDropRate(killer, drop)) {
                             possibleDrops[possibleDropsCount++] = drop;
                         }
