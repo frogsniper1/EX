@@ -3974,7 +3974,8 @@ public class Player extends Entity {
 				String boughtitems = "";
 				int price = 0;
 				int rdon = 0, edon = 0, mbox = 0, qfc = 0, bfs = 0, drs = 0, dls = 0, dms = 0, ts = 0, ps = 0, vs = 0, dss = 0, ess = 0, ass = 0,
-						sss = 0, sdr = 0, er = 0, dtd = 0, hxl = 0, row = 0, dr = 0, tbox = 0, cbox = 0 ,hussein = 0, bandit = 0, poseidon  = 0, rosary  = 0, avas = 0;
+						sss = 0, sdr = 0, er = 0, dtd = 0, hxl = 0, row = 0, dr = 0, tbox = 0, cbox = 0 ,hussein = 0, bandit = 0, poseidon  = 0, rosary  = 0, avas = 0,
+						keyx = 0;
 				boolean nothin = false;
 				String[] ary = results.split(",");
 					 for(int i = 0; i < ary.length; i++) {
@@ -4157,6 +4158,13 @@ public class Player extends Entity {
 								++avas;
 								price += 5;
 								player.sendMessage("You've purchased: [" + Colors.RED + "Ava's Accumulator Perk</col>]. "
+										+ "Type ;;perks to see all your game perks.");
+							break;
+							case "32415": //Key Expert
+								player.getPerksManager().keyExpert = true;
+								++keyx;
+								price += 6;
+								player.sendMessage("You've purchased: [" + Colors.RED + "Key Expert Perk</col>]. "
 										+ "Type ;;perks to see all your game perks.");
 							break;
 						}
