@@ -1,11 +1,17 @@
 package com.rs.game.player.content.perks;
 
+import java.io.Serializable;
+
 import com.rs.Settings;
 import com.rs.game.player.Player;
 import com.rs.utils.Colors;
 
-public class PerksManager{
+public class PerksManager implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8625006779311291003L;
 	/**
 	 * A list of available perks.
 	 */
@@ -53,8 +59,9 @@ public class PerksManager{
 		sendText(13, (unliRun ? Colors.GREEN : Colors.RED) + "[1] Unlimited Run");
 		sendText(14, (sleightOfHand ? Colors.GREEN : Colors.RED) + "[2] Sleight of Hand");
 		sendText(15, (masterFisherman ? Colors.GREEN : Colors.RED) + "[3] Master Fisherman");
-		sendText(16, (prayerBetrayer ? Colors.GREEN : Colors.RED) + "[4] Prayer Betrayer");
+		sendText(16, (prayerBetrayer ? Colors.GREEN : Colors.RED) + "[4] Prayer Reduction");
 		sendText(17, (avasSecret ? Colors.GREEN : Colors.RED) + "[5] Ava's Effect");
+		sendText(18, (keyExpert ? Colors.GREEN : Colors.RED) + "[6] Key Expert");
 		//sendText(13, (solomon ? Colors.GREEN : Colors.RED) + "[1] Solomon");
 		//sendText(14, (unliRun ? Colors.GREEN : Colors.RED) + "[2] Unlimited Run");
 		//sendText(15, (greenThumb ? Colors.GREEN : Colors.RED) + "[3] Green Thumb");

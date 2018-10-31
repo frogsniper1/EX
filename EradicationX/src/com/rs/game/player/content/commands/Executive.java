@@ -994,6 +994,34 @@ public class Executive {
             		  player.getPerksManager().sleightOfHand = true;
             	  player.sm(Colors.GREEN+"[PerksManager] You have "+(player.getPerksManager().sleightOfHand ? "enabled" : "disabled")+" sleightOfHand.");
             	  break;
+              case 3:
+            	  if(player.getPerksManager().masterFisherman) {
+            		  player.getPerksManager().masterFisherman = false;
+            	  }else
+            		  player.getPerksManager().masterFisherman = true;
+            	  player.sm(Colors.GREEN+"[PerksManager] You have "+(player.getPerksManager().masterFisherman ? "enabled" : "disabled")+" masterFisherman.");
+            	  break;
+              case 4:
+            	  if(player.getPerksManager().prayerBetrayer) {
+            		  player.getPerksManager().prayerBetrayer = false;
+            	  }else
+            		  player.getPerksManager().prayerBetrayer = true;
+            	  player.sm(Colors.GREEN+"[PerksManager] You have "+(player.getPerksManager().prayerBetrayer ? "enabled" : "disabled")+" prayerBetrayer.");
+            	  break;
+              case 5:
+            	  if(player.getPerksManager().avasSecret) {
+            		  player.getPerksManager().avasSecret = false;
+            	  }else
+            		  player.getPerksManager().avasSecret = true;
+            	  player.sm(Colors.GREEN+"[PerksManager] You have "+(player.getPerksManager().avasSecret ? "enabled" : "disabled")+" avasSecret.");
+            	  break;
+              case 6:
+            	  if(player.getPerksManager().keyExpert) {
+            		  player.getPerksManager().keyExpert = false;
+            	  }else
+            		  player.getPerksManager().keyExpert = true;
+            	  player.sm(Colors.GREEN+"[PerksManager] You have "+(player.getPerksManager().keyExpert ? "enabled" : "disabled")+" keyExpert.");
+            	  break;
               }
               return true;
             }
