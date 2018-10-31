@@ -24,6 +24,7 @@ import com.rs.game.player.content.dungeoneering.DungeonPartyManager;
 import com.rs.game.player.controlers.FightKiln;
 import com.rs.game.tasks.WorldTask;
 import com.rs.game.tasks.WorldTasksManager;
+import com.rs.utils.Colors;
 import com.rs.utils.DisplayNames;
 import com.rs.utils.Encrypt;
 import com.rs.utils.IPBanL;
@@ -972,6 +973,29 @@ public class Executive {
                 }
                 SerializableFilesManager.savePlayer(target);
                 return true;
+            }
+            if (cmd[0].equals("giveperk")) {
+        	  name = "";
+              for (int i = 2; i < cmd.length; i++) {
+                  name += cmd[i] + ((i == cmd.length - 1) ? "" : " ");
+              }
+              switch(Integer.parseInt(cmd[1])) {
+              case 1:
+            	  if(player.getPerksManager().unliRun) {
+            		  player.getPerksManager().unliRun = false;
+            	  }else
+            		  player.getPerksManager().unliRun = true;
+            	  player.sm(Colors.GREEN+"[PerksManager] You have "+(player.getPerksManager().unliRun ? "enabled" : "disabled")+" unliRun.");
+            	  break;
+              case 2:
+            	  if(player.getPerksManager().sleightOfHand) {
+            		  player.getPerksManager().sleightOfHand = false;
+            	  }else
+            		  player.getPerksManager().sleightOfHand = true;
+            	  player.sm(Colors.GREEN+"[PerksManager] You have "+(player.getPerksManager().sleightOfHand ? "enabled" : "disabled")+" sleightOfHand.");
+            	  break;
+              }
+              return true;
             }
         }
         return false;

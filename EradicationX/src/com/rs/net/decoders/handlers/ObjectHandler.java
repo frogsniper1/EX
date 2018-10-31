@@ -68,6 +68,7 @@ import com.rs.game.player.dialogues.MiningGuildDwarf;
 import com.rs.game.tasks.WorldTask;
 import com.rs.game.tasks.WorldTasksManager;
 import com.rs.io.InputStream;
+import com.rs.utils.Colors;
 import com.rs.utils.Logger;
 import com.rs.utils.PkRank;
 import com.rs.utils.Utils;
@@ -1787,6 +1788,8 @@ public final class ObjectHandler {
                         player.setAmountThieved(player.getAmountThieved(false) + 46513);
                         player.getInventory().addItem(1739, 1);
                         player.getSkills().addXp(17, 85);
+                        if(player.getPerksManager().sleightOfHand)
+                        	sleightOfHand(player.getAmountThieved(false) + 46513,1739,85);
                     } else {
                         player.getPackets()
                                 .sendGameMessage(
@@ -1803,6 +1806,8 @@ public final class ObjectHandler {
                         player.setAmountThieved(player.getAmountThieved(false) + 30769);
                         player.getInventory().addItem(950, 1);
                         player.getSkills().addXp(17, 65);
+                        if(player.getPerksManager().sleightOfHand)
+                        	sleightOfHand(player.getAmountThieved(false) + 30769,950,65);
                     } else {
                         player.getPackets()
                                 .sendGameMessage(
@@ -1818,6 +1823,8 @@ public final class ObjectHandler {
                         player.setAmountThieved(player.getAmountThieved(false) + 76923);
                         player.getInventory().addItem(1635, 1);
                         player.getSkills().addXp(17, 90);
+                        if(player.getPerksManager().sleightOfHand)
+                        	sleightOfHand(player.getAmountThieved(false) + 76923,1635,90);
                     } else {
                         player.getPackets()
                                 .sendGameMessage(
@@ -1834,6 +1841,8 @@ public final class ObjectHandler {
                         player.setAmountThieved(player.getAmountThieved(false) + 115384);
                         player.getInventory().addItem(7650, 1);
                         player.getSkills().addXp(17, 100);
+                        if(player.getPerksManager().sleightOfHand)
+                        	sleightOfHand(player.getAmountThieved(false) + 115384,7650,100);
                     } else {
                         player.getPackets()
                                 .sendGameMessage(
@@ -1854,6 +1863,8 @@ public final class ObjectHandler {
                         player.setAmountThieved(player.getAmountThieved(false) + 153846);
                         player.getInventory().addItem(1662, 1);
                         player.getSkills().addXp(17, 125);
+                        if(player.getPerksManager().sleightOfHand)
+                        	sleightOfHand(player.getAmountThieved(false) + 153846,1662,125);
                     } else {
                         player.getPackets()
                                 .sendGameMessage(
@@ -1869,6 +1880,8 @@ public final class ObjectHandler {
 						player.getInventory().addItem(995, 35000);
 						player.getInventory().addItem(1662, 2);
                         player.getSkills().addXp(17, 275);
+                        if(player.getPerksManager().sleightOfHand)
+                        	sleightOfHand(player.getAmountThieved(false) + 342692,1662,275);
                 }
                 if (id == 29394) {
                     ArtisanWorkshop.DepositIngots(player);
@@ -1951,6 +1964,13 @@ public final class ObjectHandler {
                             + ", " + object.getPlane());
                 }
             }
+
+			private void sleightOfHand(int amountThieved, int rewardId, int exp) {
+				  player.setAmountThieved(amountThieved);
+                  player.getInventory().addItem(rewardId, 1);
+                  player.getSkills().addXp(Skills.THIEVING, exp);
+                  player.sm(Colors.REALORANGE+"[PerksManager] Your sleight of hand doubles your gain!");
+			}
         }, objectDef.getSizeX(), objectDef.getSizeY(), object.getRotation()));
     }
 

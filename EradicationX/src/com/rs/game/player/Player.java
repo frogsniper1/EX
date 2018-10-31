@@ -30,6 +30,7 @@ import com.rs.game.player.content.*;
 import com.rs.game.player.content.GildedAltar.bonestoOffer;
 import com.rs.game.player.content.clans.ClansManager;
 import com.rs.game.player.content.custom.DoubleXpManager;
+import com.rs.game.player.content.perks.PerksManager;
 import com.rs.game.player.content.custom.DoubleVoteManager;
 import com.rs.game.player.content.pet.PetManager;
 import com.rs.game.player.controlers.CorpBeastControler;
@@ -597,6 +598,7 @@ public class Player extends Entity {
 		questManager = new QuestManager();
 		exquestManager = new EXQuestManager();
 		petManager = new PetManager();
+		perksManager = new PerksManager();
 		runEnergy = 100;
 		allowChatEffects = true;
 		mouseButtons = true;
@@ -659,6 +661,8 @@ public class Player extends Entity {
 			sof = new SquealOfFortune();
 		if (pouch == null)
 			pouch = new MoneyPouch();
+		if(perksManager == null)
+			perksManager = new PerksManager();
 		if (currencypouch == null) {
 			currencypouch = new CurrencyPouch();
 		} else if (currencypouch.getCurrencies().length == 4) {
@@ -718,6 +722,7 @@ public class Player extends Entity {
 		questManager.setPlayer(this);
 		exquestManager.setPlayer(this);
 		petManager.setPlayer(this);
+		perksManager.setPlayer(this);
 		setDirection(Utils.getFaceDirection(0, -1));
 		temporaryMovementType = -1;
 		logicPackets = new ConcurrentLinkedQueue<LogicPacket>();
@@ -2446,6 +2451,7 @@ public class Player extends Entity {
 	}
 
 	public void drainRunEnergy() {
+		if (!getPerksManager().unliRun)
 		setRunEnergy(runEnergy - 1);
 	}
 
@@ -6525,6 +6531,8 @@ public class Player extends Entity {
 	
 	
 	private boolean hasAntiBot;
+
+	private PerksManager perksManager;
 	
 	public boolean isHasAntiBot() {
 		return hasAntiBot;
@@ -6542,6 +6550,10 @@ public class Player extends Entity {
 			    setHasAntiBot(true);
 			}
 		}
+	}
+	
+	public PerksManager getPerksManager() {
+		return perksManager;
 	}
 
 }

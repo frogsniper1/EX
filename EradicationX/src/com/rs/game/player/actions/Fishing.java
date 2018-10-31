@@ -249,14 +249,14 @@ public class Fishing extends Action {
 	}
 
 	private void addFish(Player player) {
-		Item fish = new Item(spot.getFish()[fishId].getId(), multipleCatch ? 2
-				: 1);
+		Item fish = new Item(spot.getFish()[fishId].getId(),(player.getPerksManager().masterFisherman ? 2 : 1) * (multipleCatch ? 2
+				: 1));
 		player.getPackets().sendGameMessage(getMessage(fish), true);
 		player.getInventory().deleteItem(spot.getBait(), 1);
 		double totalXp = spot.getFish()[fishId].getXp();
 		if (hasFishingSuit(player))
 			totalXp *= 1.025;
-		player.getSkills().addXp(Skills.FISHING, totalXp);
+		player.getSkills().addXp(Skills.FISHING, totalXp * (player.getPerksManager().masterFisherman ? 2 : 1));
 		player.getInventory().addItem(fish);
 		if (player.getFamiliar() != null) {
 			if (Utils.getRandom(50) == 0
