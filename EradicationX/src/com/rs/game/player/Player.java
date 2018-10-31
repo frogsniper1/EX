@@ -4226,6 +4226,8 @@ public class Player extends Entity {
 							boughtitems += rosary + "x Rosary Mastery Perk, ";
 						if (avas != 0)
 							boughtitems += avas + "x Ava's Accumulator Perk, ";
+						if (keyx != 0)
+							boughtitems += keyx + "x Key Expert Perk, ";
 						String newboughtitems = "";
 						newboughtitems = boughtitems.substring(0,boughtitems.length() - 2) + "!";
 						if (!hidden) {
