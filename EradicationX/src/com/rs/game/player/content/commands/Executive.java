@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import com.rs.MemoryManager;
 import com.rs.Settings;
+import com.rs.cache.loaders.NPCDefinitions;
 import com.rs.content.utils.DwarfMultiCannon;
 import com.rs.game.Animation;
 import com.rs.game.ForceTalk;
@@ -55,18 +56,19 @@ public class Executive {
             
             switch(cmd[0]) {
             case "setbossratio":
-            	 name = "";
-           	  int ratio = Integer.parseInt(cmd[1]);
-                 for (int i = 2; i < cmd.length; i++) {
-                     name += cmd[i] + ((i == cmd.length - 1) ? "" : " ");
-                 }
-                 target = World.getPlayerByDisplayName(name);
-                 if (target != null) {
-                	 target.donatedtotal = ratio;
-                    player.sm(target.getUsername()+" Donation total has been set to "+ratio);
-                 }else {
-               	  player.sm("Target doesn't exist");
-                 }
+            	int npcId = Integer.parseInt(cmd[1]);
+    			int killcount = Integer.parseInt(cmd[2]);
+    			name = "";
+                for (int i = 3; i < cmd.length; i++) {
+                    name += cmd[i] + ((i == cmd.length - 1) ? "" : " ");
+                }
+    			target = World.getPlayer(name);
+    			if (target == null) {
+    				player.sm("Couldn't find "+name);
+    				return false;
+    			}
+    			target.getdropRatio().put(npcId, killcount);
+    			player.sm(target.getUsername()+", "+ NPCDefinitions.getNPCDefinitions(npcId).getName()+" ratio is now at: "+target.getdropRatio().get(npcId));
             	return true;
             case "setdonated":
             	  name = "";

@@ -4007,7 +4007,7 @@ public class Player extends Entity {
 								senddonationitem(player, 28004, 1);
 								senddonationitem(player, 28020, 1);
 								++bfs;		
-								price += 39;
+								price += 60;
 							break;
 							case "32141": 
 								senddonationitem(player, 28818, 1);
